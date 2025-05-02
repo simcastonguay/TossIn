@@ -6,6 +6,8 @@
 using namespace std;
 using namespace sf;
 
+//Test
+
 int collisionMur(Vector2f prochainePosition, const vector<int>& level, int sizeBlock, int largeurBlock) {
 	int colonne = prochainePosition.x / sizeBlock;
 	int ligne = prochainePosition.y / sizeBlock;

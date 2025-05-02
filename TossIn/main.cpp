@@ -8,6 +8,8 @@
 using namespace std;
 using namespace sf;
 
+//TEST
+
 int main() {
 	int width = 1600, height = 1000;
 	RenderWindow window(VideoMode(width, height), "Toss in!");
