@@ -43,6 +43,9 @@
     <Image Include="image\tileMap.png">
       <Filter>Fichiers de ressources</Filter>
     </Image>
+    <Image Include="..\..\..\..\..\Downloads\PenguinSheet.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="level1.txt">

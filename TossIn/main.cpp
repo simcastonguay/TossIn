@@ -27,7 +27,12 @@ int main() {
 
 	Texture textureMure;
 	if (!textureMure.loadFromFile("image/tileMap.png"))
+	{
+		cout << "Tile Map ne fonctionne pas";
+		system("Pause>0");
 		return 1;
+	}
+		
 
 	IntRect typeBlock(0,0,100,100);
 
@@ -41,14 +46,8 @@ int main() {
 
 	int indexNiveau = 0;
 
-	ifstream sauvegarde("updateNiveau.txt");
-
-	if (!sauvegarde) {
-		cout << "Le fichier n'a pas pu ouvrir!" << endl;
-		return 1;
-	}
-	
-	sauvegarde >> indexNiveau;
+	ifstream index;
+	OpenFichier(index,indexNiveau,"updateNiveau.txt");
 
 	string nomLevel[5]{
 		"level1.txt",
@@ -66,6 +65,18 @@ int main() {
 	}
 
 	vector<RectangleShape> boxes;
+
+	std::vector<RectangleShape> boiteCheck;
+	int countcheck = 0;
+	Texture texturebox;
+	if (!texturebox.loadFromFile("image/PenguinSheet.png")){
+		cout << "Penguin sheet ne fonctionne pas !";
+		system("Pause>0");
+		return 1;
+	}
+		
+
+	IntRect BCheck(0, 0, 100, 100);
 
 	char c;
 
@@ -86,10 +97,16 @@ int main() {
 			else if (valeur == 6) {
 				RectangleShape nouvelleBox;
 				nouvelleBox.setSize(Vector2f(sizeBlock, sizeBlock));
-				nouvelleBox.setFillColor(Color::Yellow);
 				nouvelleBox.setPosition(x, y);
+				nouvelleBox.setTexture(&texturebox);
+				nouvelleBox.setTextureRect(BCheck);
 				boxes.push_back(nouvelleBox);
 				level.back() = 2;
+			}
+			else if(valeur == 4){
+				RectangleShape boxcheck;
+				boxcheck.setPosition(x,y);
+				boiteCheck.push_back(boxcheck);
 			}
 			count++;
 		}
@@ -272,8 +289,29 @@ int main() {
 			}
 		}
 		window.draw(bonhomme);
+		
+
 		for (auto& box : boxes) {
+			for (auto& check : boiteCheck)
+			{
+				if (box.getPosition() == check.getPosition())
+				{
+					BCheck.left = 100;
+					break;
+				}
+				else
+				{
+					BCheck.left = 0;
+				}
+			}
+
+			box.setTextureRect(BCheck);
 			window.draw(box);
+		}
+		if (Niveaureussi)
+		{
+			indexNiveau++;
+
 		}
 		window.display();
 
