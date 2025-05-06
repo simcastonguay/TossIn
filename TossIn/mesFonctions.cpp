@@ -56,3 +56,15 @@ void OpenFichier(std::ifstream& inputs, int& index,std::string nom)
 
 	inputs.close();
 }
+
+int collisionTroue(sf::Vector2f prochainePosition, const std::vector<int>& level, int sizeBlock, int largeurBlock)
+{
+	int colonne = prochainePosition.x / sizeBlock;
+	int ligne = prochainePosition.y / sizeBlock;
+
+	if (colonne < 0 || colonne >= largeurBlock || ligne < 0 || ligne >= 10)
+		return true;
+
+	int index = colonne + ligne * largeurBlock;
+	return level[index] == 3;
+}
