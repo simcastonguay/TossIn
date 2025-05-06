@@ -46,14 +46,8 @@ int main() {
 
 	int indexNiveau = 0;
 
-	ifstream sauvegarde("updateNiveau.txt");
-
-	if (!sauvegarde) {
-		cout << "Le fichier n'a pas pu ouvrir!" << endl;
-		return 1;
-	}
-	
-	sauvegarde >> indexNiveau;
+	ifstream index;
+	OpenFichier(index,indexNiveau,"updateNiveau.txt");
 
 	string nomLevel[5]{
 		"level1.txt",
@@ -73,6 +67,7 @@ int main() {
 	vector<RectangleShape> boxes;
 
 	std::vector<RectangleShape> boiteCheck;
+	int countcheck = 0;
 	Texture texturebox;
 	if (!texturebox.loadFromFile("image/PenguinSheet.png")){
 		cout << "Penguin sheet ne fonctionne pas !";
@@ -312,6 +307,11 @@ int main() {
 
 			box.setTextureRect(BCheck);
 			window.draw(box);
+		}
+		if (Niveaureussi)
+		{
+			indexNiveau++;
+
 		}
 		window.display();
 
