@@ -66,17 +66,19 @@ int main() {
 
 	vector<RectangleShape> boxes;
 
+	//Boite et initialisation
 	std::vector<RectangleShape> boiteCheck;
 	int countcheck = 0;
 	Texture texturebox;
 	if (!texturebox.loadFromFile("image/PenguinSheet.png")){
 		cout << "Penguin sheet ne fonctionne pas !";
-		system("Pause>0");
 		return 1;
 	}
 		
 
 	IntRect BCheck(0, 0, 100, 100);
+
+	vector<RectangleShape> TroueV;
 
 	char c;
 
@@ -107,6 +109,11 @@ int main() {
 				RectangleShape boxcheck;
 				boxcheck.setPosition(x,y);
 				boiteCheck.push_back(boxcheck);
+			}
+			else if (valeur == 3) {
+				RectangleShape Troue;
+				Troue.setPosition(x,y);
+				TroueV.push_back(Troue);
 			}
 			count++;
 		}
@@ -213,6 +220,7 @@ int main() {
 				}
 
 				bool collision = collisionMur(futureBoxPosition, level, sizeBlock, largeurBlock);
+				
 
 				for (const auto& autreBox : boxes) {
 					if (&autreBox != &box && autreBox.getPosition() == futureBoxPosition) {
@@ -231,7 +239,7 @@ int main() {
 			}
 		}
 
-		if ((deplacementAutorise || aPousseUneBoite) && !collisionMur(prochainePosition, level, sizeBlock, largeurBlock)) {
+		if ((deplacementAutorise || aPousseUneBoite) && !collisionMur(prochainePosition, level, sizeBlock, largeurBlock) && !collisionTroue(prochainePosition, level, sizeBlock, largeurBlock)) {
 			bonhomme.setPosition(prochainePosition);
 		}
 
@@ -274,7 +282,10 @@ int main() {
 					typeBlock.top = 100;
 					typeBlock.left = 100;
 					break;
-
+				case 7:
+					typeBlock.left = 200;
+					typeBlock.top = 0;
+					break;
 				default:
 					//noBlock = true;
 					break;
@@ -289,8 +300,7 @@ int main() {
 			}
 		}
 		window.draw(bonhomme);
-		
-
+		int count = 0;
 		for (auto& box : boxes) {
 			for (auto& check : boiteCheck)
 			{
@@ -305,13 +315,30 @@ int main() {
 				}
 			}
 
+			int colonne = box.getPosition().x / sizeBlock;
+			int ligne = box.getPosition().y / sizeBlock;
+			int index = colonne + ligne * largeurBlock;
+
+			for (auto& trou : TroueV)
+			{
+				
+				if (box.getPosition() == trou.getPosition() && level.at(index) != 7)
+				{
+					BCheck.left = 200;
+					level.at(index) = 7;
+					box.setPosition(-100,-100);
+					break;
+				}
+				count++;
+			}
+
 			box.setTextureRect(BCheck);
 			window.draw(box);
 		}
+
 		if (Niveaureussi)
 		{
 			indexNiveau++;
-
 		}
 		window.display();
 
