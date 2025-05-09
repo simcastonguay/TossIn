@@ -110,19 +110,27 @@ int main() {
 		switch (dir) {
 
 		case 1: 
-			prochainePosition.y -= 100; 
+			prochainePosition.y -= 100;
+			rectBonhomme.left = 100;
+			rectBonhomme.top = 0;
 			break;
 
 		case 2: 
 			prochainePosition.y += 100; 
+			rectBonhomme.left = 0;
+			rectBonhomme.top = 0;
 			break;
 
 		case 3: 
 			prochainePosition.x += 100; 
+			rectBonhomme.left = 0;
+			rectBonhomme.top = 100;
 			break;
 
 		case 4: 
 			prochainePosition.x -= 100; 
+			rectBonhomme.left = 100;
+			rectBonhomme.top = 200;
 			break;
 		}
 
