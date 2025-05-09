@@ -69,6 +69,107 @@ int collisionTroue(sf::Vector2f prochainePosition, const std::vector<int>& level
 	return level[index] == 3;
 }
 
+void ouvrirSprite(sf::Texture& texture, std::string nom)
+{
+	if (!texture.loadFromFile(nom))
+	{
+		cout << "L'ouverture du Sprite ne fonctionne pas";
+		system("Pause>0");
+		exit(1);
+	}
+}
+
+void boxEtTroue(std::vector<sf::RectangleShape>& boxes, std::vector<sf::RectangleShape>& TroueV, std::vector<sf::RectangleShape>& boiteCheck, sf::IntRect& BCheck, std::vector<int>& level, int sizeBlock, sf::RenderWindow& window, int largeurBlock)
+{
+
+	for (auto& box : boxes) {
+		for (auto& check : boiteCheck)
+		{
+			if (box.getPosition() == check.getPosition())
+			{
+				BCheck.left = 100;
+				break;
+			}
+			else
+			{
+				BCheck.left = 0;
+			}
+		}
+
+		int colonne = box.getPosition().x / sizeBlock;
+		int ligne = box.getPosition().y / sizeBlock;
+		int index = colonne + ligne * largeurBlock;
+
+		for (auto& trou : TroueV)
+		{
+
+			if (box.getPosition() == trou.getPosition() && level.at(index) != 7)
+			{
+				BCheck.left = 200;
+				level.at(index) = 7;
+				box.setPosition(-100, -100);
+				break;
+			}
+		}
+
+		box.setTextureRect(BCheck);
+		window.draw(box);
+	}
+}
+
+void placerTileMap(int hauteurBlock, int largeurBlock, int sizeBlock, sf::IntRect& typeBlock, sf::RectangleShape& mur, sf::Texture& textureMure, sf::RenderWindow& window, std::vector<int>& level, int& dir)
+{
+	for (int j = 0; j < hauteurBlock; ++j) {
+		for (int i = 0; i < largeurBlock; ++i) {
+			int index = i + j * largeurBlock;
+			int posX = i * sizeBlock;
+			int posY = j * sizeBlock;
+			typeBlock.top = 0;
+			typeBlock.left = 0;
+
+			switch (level[index]) {
+			case 1:
+				//Briques
+				typeBlock.top = 0;
+				typeBlock.left = 0;
+				break;
+
+			case 2:
+				//Plancher
+				typeBlock.top = 0;
+				typeBlock.left = 100;
+				break;
+
+			case 3:
+				//Troue
+				typeBlock.top = 100;
+				typeBlock.left = 0;
+				break;
+
+			case 4:
+				//Cible
+				typeBlock.top = 100;
+				typeBlock.left = 100;
+				break;
+			case 7:
+				typeBlock.left = 200;
+				typeBlock.top = 0;
+				break;
+			default:
+				break;
+			}
+			dir = 0;
+
+			mur.setPosition(posX, posY);
+			mur.setTextureRect(typeBlock);
+			mur.setTexture(&textureMure);
+			window.draw(mur);
+
+		}
+	}
+}
+
+
 void loadTextureMap(std::ifstream& fichier, char c, std::vector<int>& level, const int totalBlock, const int largeurBlock, const int sizeBlock, sf::RectangleShape bonhomme, sf::Texture& textureBox, sf::IntRect bCheck, std::vector<sf::RectangleShape> &boxes, std::vector<sf::RectangleShape> &boiteCheck, std::vector<sf::RectangleShape> &troueV, int count)
 {
 	while (fichier >> c && level.size() < totalBlock) {

@@ -84,7 +84,7 @@ int main() {
 	int count = 0;
 
 
-	loadTextureMap(fichier, c, level, totalBlock, largeurBlock, sizeBlock, bonhomme, textureBox, bCheck, boxes, boiteCheck, troueV, count);
+	loadTextureMap(fichier, c, level, totalBlock, largeurBlock, sizeBlock, bonhomme, texturebox, bCheck, boxes, boiteCheck, troueV, count);
 
 	if (level.size() != totalBlock) {
 		cout << "Le fichier semble corrompu" << endl;
@@ -172,7 +172,7 @@ int main() {
 
 		dir = 0;
 
-		boxEtTroue(boxes,TroueV,boiteCheck,BCheck,level,sizeBlock,window,largeurBlock);
+		boxEtTroue(boxes,troueV,boiteCheck,bCheck,level,sizeBlock,window,largeurBlock);
 
 		if (Niveaureussi)
 		{
