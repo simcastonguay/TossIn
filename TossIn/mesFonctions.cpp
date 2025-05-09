@@ -68,3 +68,13 @@ int collisionTroue(sf::Vector2f prochainePosition, const std::vector<int>& level
 	int index = colonne + ligne * largeurBlock;
 	return level[index] == 3;
 }
+
+void OuvrirSprite(sf::Texture& texture, std::string nom)
+{
+	if (!texture.loadFromFile(nom))
+	{
+		cout << "L'ouverture du Sprite ne fonctionne pas";
+		system("Pause>0");
+		exit(1);
+	}
+}

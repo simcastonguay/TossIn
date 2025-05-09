@@ -26,12 +26,7 @@ int main() {
 	bonhomme.setFillColor(Color::White);
 
 	Texture textureMure;
-	if (!textureMure.loadFromFile("image/tileMap.png"))
-	{
-		cout << "Tile Map ne fonctionne pas";
-		system("Pause>0");
-		return 1;
-	}
+	OuvrirSprite(textureMure,"image/tileMap.png");
 		
 
 	IntRect typeBlock(0,0,100,100);
@@ -61,7 +56,7 @@ int main() {
 
 	if (!fichier) {
 		cout << "Le fichier n'a pas pu ouvrir!" << endl;
-		return 1;
+		exit(1);
 	}
 
 	vector<RectangleShape> boxes;
@@ -69,6 +64,7 @@ int main() {
 	//Boite et initialisation
 	std::vector<RectangleShape> boiteCheck;
 	int countcheck = 0;
+
 	Texture texturebox;
 	if (!texturebox.loadFromFile("image/PenguinSheet.png")){
 		cout << "Penguin sheet ne fonctionne pas !";

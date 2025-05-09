@@ -141,8 +141,8 @@
     <ClInclude Include="mure.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\..\Downloads\PenguinSheet.png" />
     <Image Include="image\128Bricks.png" />
+    <Image Include="image\PenguinSheet.png" />
     <Image Include="image\tileMap.png" />
   </ItemGroup>
   <ItemGroup>

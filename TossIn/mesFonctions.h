@@ -7,3 +7,5 @@ bool Niveaureussi(std::vector<sf::RectangleShape> &boxes, std::vector<sf::Rectan
 void OpenFichier(std::ifstream &inputs,int &index, std::string nom);
 
 int collisionTroue(sf::Vector2f prochainePosition, const std::vector<int>& level, int sizeBlock, int largeurBlock);
+
+void OuvrirSprite(sf::Texture& texture,std::string nom);
