@@ -25,6 +25,11 @@ int main() {
 	bonhomme.setSize(Vector2f(100, 100));
 	bonhomme.setFillColor(Color::White);
 
+	Texture textureBonhomme;
+	ouvrirSprite(textureBonhomme,"image/renauTileSheet.png");
+	IntRect rectBonhomme(0,0,100,100);
+
+
 	Texture textureMure;
 	ouvrirSprite(textureMure,"image/tileMap.png");
 		
@@ -66,10 +71,7 @@ int main() {
 	int countcheck = 0;
 
 	Texture texturebox;
-	if (!texturebox.loadFromFile("image/PenguinSheet.png")){
-		cout << "Penguin sheet ne fonctionne pas !";
-		return 1;
-	}
+	ouvrirSprite(texturebox,"image/PenguinSheet.png");
 		
 
 	IntRect BCheck(0, 0, 100, 100);
@@ -147,21 +149,29 @@ int main() {
 				case Keyboard::Up:
 
 					dir = 1;
+					rectBonhomme.left = 100;
+					rectBonhomme.top = 0;
 					break;
 
 				case Keyboard::Right:
 
 					dir = 3;
+					rectBonhomme.top = 100;
+					rectBonhomme.left = 0;
 					break;
 
 				case Keyboard::Down:
 
 					dir = 2;
+					rectBonhomme.left = 0;
+					rectBonhomme.top = 0;
 					break;
 
 				case Keyboard::Left:
 
 					dir = 4;
+					rectBonhomme.top = 200;
+					rectBonhomme.left = 100;
 					break;
 				}
 			}
@@ -239,14 +249,17 @@ int main() {
 			bonhomme.setPosition(prochainePosition);
 		}
 
-		dir = 0; 	
-
 		window.clear();
 		window.draw(fondEcran);
 
 		placerTileMap(hauteurBlock,largeurBlock,sizeBlock,typeBlock,mur,textureMure,window,level,dir);
 
+
+		bonhomme.setTexture(&textureBonhomme);
+		bonhomme.setTextureRect(rectBonhomme);
 		window.draw(bonhomme);
+
+		dir = 0;
 
 		boxEtTroue(boxes,TroueV,boiteCheck,BCheck,level,sizeBlock,window,largeurBlock);
 

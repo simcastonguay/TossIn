@@ -143,6 +143,7 @@
   <ItemGroup>
     <Image Include="image\128Bricks.png" />
     <Image Include="image\PenguinSheet.png" />
+    <Image Include="image\RenauTileSheet.png" />
     <Image Include="image\tileMap.png" />
   </ItemGroup>
   <ItemGroup>

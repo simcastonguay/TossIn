@@ -46,6 +46,9 @@
     <Image Include="image\PenguinSheet.png">
       <Filter>Fichiers de ressources</Filter>
     </Image>
+    <Image Include="image\RenauTileSheet.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="level1.txt">
