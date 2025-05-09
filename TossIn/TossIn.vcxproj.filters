@@ -43,7 +43,10 @@
     <Image Include="image\tileMap.png">
       <Filter>Fichiers de ressources</Filter>
     </Image>
-    <Image Include="..\..\..\..\..\Downloads\PenguinSheet.png">
+    <Image Include="image\PenguinSheet.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="image\RenauTileSheet.png">
       <Filter>Fichiers de ressources</Filter>
     </Image>
   </ItemGroup>
