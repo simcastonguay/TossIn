@@ -46,6 +46,7 @@ int main() {
 
 	int indexNiveau = 0;
 
+	//get le niveau dans updateNiveau.txt
 	ifstream index;
 	OpenFichier(index,indexNiveau,"updateNiveau.txt");
 
@@ -69,55 +70,23 @@ int main() {
 	//Boite et initialisation
 	std::vector<RectangleShape> boiteCheck;
 	int countcheck = 0;
-	Texture texturebox;
-	if (!texturebox.loadFromFile("image/PenguinSheet.png")){
+	Texture textureBox;
+	if (!textureBox.loadFromFile("image/PenguinSheet.png")){
 		cout << "Penguin sheet ne fonctionne pas !";
 		return 1;
 	}
 		
 
-	IntRect BCheck(0, 0, 100, 100);
+	IntRect bCheck(0, 0, 100, 100);
 
-	vector<RectangleShape> TroueV;
+	vector<RectangleShape> troueV;
 
-	char c;
+	char c = '0';
 
 	int count = 0;
-	while (fichier >> c && level.size() < totalBlock) {
 
-		if (c >= '0' && c <= '6') {
-			int valeur = c - '0';
-			level.push_back(valeur);
 
-			int x = (count % largeurBlock) * sizeBlock;
-			int y = (count / largeurBlock) * sizeBlock;
-
-			if (valeur == 5) {
-				bonhomme.setPosition(x, y);
-				level.back() = 2;
-			}
-			else if (valeur == 6) {
-				RectangleShape nouvelleBox;
-				nouvelleBox.setSize(Vector2f(sizeBlock, sizeBlock));
-				nouvelleBox.setPosition(x, y);
-				nouvelleBox.setTexture(&texturebox);
-				nouvelleBox.setTextureRect(BCheck);
-				boxes.push_back(nouvelleBox);
-				level.back() = 2;
-			}
-			else if(valeur == 4){
-				RectangleShape boxcheck;
-				boxcheck.setPosition(x,y);
-				boiteCheck.push_back(boxcheck);
-			}
-			else if (valeur == 3) {
-				RectangleShape Troue;
-				Troue.setPosition(x,y);
-				TroueV.push_back(Troue);
-			}
-			count++;
-		}
-	};
+	loadTextureMap(fichier, c, level, totalBlock, largeurBlock, sizeBlock, bonhomme, textureBox, bCheck, boxes, boiteCheck, troueV, count);
 
 	if (level.size() != totalBlock) {
 		cout << "Le fichier semble corrompu" << endl;
@@ -133,43 +102,9 @@ int main() {
 
 	while (window.isOpen()) {
 
-		Event event;
+		Event event{};
 
-		while (window.pollEvent(event))
-		{
-			if (event.type == Event::Closed) {
-				window.close();
-			}
-
-			else if (event.type == Event::KeyPressed) {
-				switch (event.key.code) {
-				case Keyboard::Escape:
-
-					window.close();
-					break;
-
-				case Keyboard::Up:
-
-					dir = 1;
-					break;
-
-				case Keyboard::Right:
-
-					dir = 3;
-					break;
-
-				case Keyboard::Down:
-
-					dir = 2;
-					break;
-
-				case Keyboard::Left:
-
-					dir = 4;
-					break;
-				}
-			}
-		}
+		dir = getEvent(window, event, dir);
 
 		Vector2f prochainePosition = bonhomme.getPosition();
 
@@ -201,23 +136,7 @@ int main() {
 
 				Vector2f futureBoxPosition = box.getPosition();
 
-				switch (dir) {
-				case 1: 
-					futureBoxPosition.y -= 100; 
-					break;
-
-				case 2: 
-					futureBoxPosition.y += 100; 
-					break;
-
-				case 3: 
-					futureBoxPosition.x += 100; 
-					break;
-
-				case 4:
-					futureBoxPosition.x -= 100; 
-					break;
-				}
+				futureBoxPosition = getFuturBoxPosition(futureBoxPosition, dir);
 
 				bool collision = collisionMur(futureBoxPosition, level, sizeBlock, largeurBlock);
 				
@@ -247,8 +166,6 @@ int main() {
 
 		window.clear();
 		window.draw(fondEcran);
-
-		bool noBlock = false;
 
 		for (int j = 0; j < hauteurBlock; ++j) {
 			for (int i = 0; i < largeurBlock; ++i) {
@@ -287,7 +204,6 @@ int main() {
 					typeBlock.top = 0;
 					break;
 				default:
-					//noBlock = true;
 					break;
 				}
 				dir = 0;
@@ -306,12 +222,12 @@ int main() {
 			{
 				if (box.getPosition() == check.getPosition())
 				{
-					BCheck.left = 100;
+					bCheck.left = 100;
 					break;
 				}
 				else
 				{
-					BCheck.left = 0;
+					bCheck.left = 0;
 				}
 			}
 
@@ -319,12 +235,12 @@ int main() {
 			int ligne = box.getPosition().y / sizeBlock;
 			int index = colonne + ligne * largeurBlock;
 
-			for (auto& trou : TroueV)
+			for (auto& trou : troueV)
 			{
 				
 				if (box.getPosition() == trou.getPosition() && level.at(index) != 7)
 				{
-					BCheck.left = 200;
+					bCheck.left = 200;
 					level.at(index) = 7;
 					box.setPosition(-100,-100);
 					break;
@@ -332,7 +248,7 @@ int main() {
 				count++;
 			}
 
-			box.setTextureRect(BCheck);
+			box.setTextureRect(bCheck);
 			window.draw(box);
 		}
 

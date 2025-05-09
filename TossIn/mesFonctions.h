@@ -7,3 +7,9 @@ bool Niveaureussi(std::vector<sf::RectangleShape> &boxes, std::vector<sf::Rectan
 void OpenFichier(std::ifstream &inputs,int &index, std::string nom);
 
 int collisionTroue(sf::Vector2f prochainePosition, const std::vector<int>& level, int sizeBlock, int largeurBlock);
+
+void loadTextureMap(std::ifstream& fichier, char c, std::vector<int>& level, const int totalBlock, const int largeurBlock, const int sizeBlock, sf::RectangleShape bonhomme, sf::Texture& textureBox, sf::IntRect bCheck, std::vector<sf::RectangleShape> &boxes, std::vector<sf::RectangleShape> &boiteCheck, std::vector<sf::RectangleShape> &troueV, int count);
+
+int getEvent(sf::RenderWindow &window, sf::Event event, int dir);
+
+sf::Vector2f getFuturBoxPosition(sf::Vector2f futureBoxPosition, int dir);
