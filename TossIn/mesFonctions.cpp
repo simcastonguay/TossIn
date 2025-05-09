@@ -69,7 +69,7 @@ int collisionTroue(sf::Vector2f prochainePosition, const std::vector<int>& level
 	return level[index] == 3;
 }
 
-void OuvrirSprite(sf::Texture& texture, std::string nom)
+void ouvrirSprite(sf::Texture& texture, std::string nom)
 {
 	if (!texture.loadFromFile(nom))
 	{
@@ -79,7 +79,7 @@ void OuvrirSprite(sf::Texture& texture, std::string nom)
 	}
 }
 
-void BoxetTroue(std::vector<sf::RectangleShape>& boxes, std::vector<sf::RectangleShape>& TroueV, std::vector<sf::RectangleShape>& boiteCheck, sf::IntRect& BCheck, std::vector<int>& level, int sizeBlock, sf::RenderWindow& window, int largeurBlock)
+void boxEtTroue(std::vector<sf::RectangleShape>& boxes, std::vector<sf::RectangleShape>& TroueV, std::vector<sf::RectangleShape>& boiteCheck, sf::IntRect& BCheck, std::vector<int>& level, int sizeBlock, sf::RenderWindow& window, int largeurBlock)
 {
 
 	for (auto& box : boxes) {
@@ -116,3 +116,56 @@ void BoxetTroue(std::vector<sf::RectangleShape>& boxes, std::vector<sf::Rectangl
 		window.draw(box);
 	}
 }
+
+void placerTileMap(int hauteurBlock, int largeurBlock, int sizeBlock, sf::IntRect& typeBlock, sf::RectangleShape& mur, sf::Texture& textureMure, sf::RenderWindow& window, std::vector<int>& level,int& dir)
+{
+	for (int j = 0; j < hauteurBlock; ++j) {
+		for (int i = 0; i < largeurBlock; ++i) {
+			int index = i + j * largeurBlock;
+			int posX = i * sizeBlock;
+			int posY = j * sizeBlock;
+			typeBlock.top = 0;
+			typeBlock.left = 0;
+
+			switch (level[index]) {
+			case 1:
+				//Briques
+				typeBlock.top = 0;
+				typeBlock.left = 0;
+				break;
+
+			case 2:
+				//Plancher
+				typeBlock.top = 0;
+				typeBlock.left = 100;
+				break;
+
+			case 3:
+				//Troue
+				typeBlock.top = 100;
+				typeBlock.left = 0;
+				break;
+
+			case 4:
+				//Cible
+				typeBlock.top = 100;
+				typeBlock.left = 100;
+				break;
+			case 7:
+				typeBlock.left = 200;
+				typeBlock.top = 0;
+				break;
+			default:
+				break;
+			}
+			dir = 0;
+
+			mur.setPosition(posX, posY);
+			mur.setTextureRect(typeBlock);
+			mur.setTexture(&textureMure);
+			window.draw(mur);
+
+		}
+	}
+}
+

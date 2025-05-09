@@ -26,7 +26,7 @@ int main() {
 	bonhomme.setFillColor(Color::White);
 
 	Texture textureMure;
-	OuvrirSprite(textureMure,"image/tileMap.png");
+	ouvrirSprite(textureMure,"image/tileMap.png");
 		
 
 	IntRect typeBlock(0,0,100,100);
@@ -244,60 +244,11 @@ int main() {
 		window.clear();
 		window.draw(fondEcran);
 
-		bool noBlock = false;
+		placerTileMap(hauteurBlock,largeurBlock,sizeBlock,typeBlock,mur,textureMure,window,level,dir);
 
-		for (int j = 0; j < hauteurBlock; ++j) {
-			for (int i = 0; i < largeurBlock; ++i) {
-				int index = i + j * largeurBlock;
-				int posX = i * sizeBlock;
-				int posY = j * sizeBlock;
-				typeBlock.top = 0;
-				typeBlock.left = 0;
-
-				switch (level[index]) {
-				case 1:
-					//Briques
-					typeBlock.top = 0;
-					typeBlock.left = 0;
-					break;
-
-				case 2:
-					//Plancher
-					typeBlock.top = 0;
-					typeBlock.left = 100;
-					break;
-
-				case 3:
-					//Troue
-					typeBlock.top = 100;
-					typeBlock.left = 0;
-					break;
-
-				case 4:
-					//Cible
-					typeBlock.top = 100;
-					typeBlock.left = 100;
-					break;
-				case 7:
-					typeBlock.left = 200;
-					typeBlock.top = 0;
-					break;
-				default:
-					//noBlock = true;
-					break;
-				}
-				dir = 0;
-
-				mur.setPosition(posX, posY);
-				mur.setTextureRect(typeBlock);
-				mur.setTexture(&textureMure);
-				window.draw(mur);
-
-			}
-		}
 		window.draw(bonhomme);
 
-		BoxetTroue(boxes,TroueV,boiteCheck,BCheck,level,sizeBlock,window,largeurBlock);
+		boxEtTroue(boxes,TroueV,boiteCheck,BCheck,level,sizeBlock,window,largeurBlock);
 
 		if (Niveaureussi)
 		{

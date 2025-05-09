@@ -8,6 +8,8 @@ void OpenFichier(std::ifstream &inputs,int &index, std::string nom);
 
 int collisionTroue(sf::Vector2f prochainePosition, const std::vector<int>& level, int sizeBlock, int largeurBlock);
 
-void OuvrirSprite(sf::Texture& texture,std::string nom);
+void ouvrirSprite(sf::Texture& texture,std::string nom);
 
-void BoxetTroue(std::vector<sf::RectangleShape> &boxes, std::vector<sf::RectangleShape>& TroueV, std::vector<sf::RectangleShape>& boiteCheck,sf::IntRect& BCheck, std::vector<int>& level,int sizeBlock,sf::RenderWindow& window, int largeurBlock);
+void boxEtTroue(std::vector<sf::RectangleShape> &boxes, std::vector<sf::RectangleShape>& TroueV, std::vector<sf::RectangleShape>& boiteCheck,sf::IntRect& BCheck, std::vector<int>& level,int sizeBlock,sf::RenderWindow& window, int largeurBlock);
+
+void placerTileMap(int hauteurBlock, int largeurBlock, int sizeBlock, sf::IntRect& typeBlock, sf::RectangleShape& mur,sf::Texture& textureMure, sf::RenderWindow& window,std::vector<int>& level, int& dir);
