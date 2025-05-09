@@ -296,41 +296,8 @@ int main() {
 			}
 		}
 		window.draw(bonhomme);
-		int count = 0;
-		for (auto& box : boxes) {
-			for (auto& check : boiteCheck)
-			{
-				if (box.getPosition() == check.getPosition())
-				{
-					BCheck.left = 100;
-					break;
-				}
-				else
-				{
-					BCheck.left = 0;
-				}
-			}
 
-			int colonne = box.getPosition().x / sizeBlock;
-			int ligne = box.getPosition().y / sizeBlock;
-			int index = colonne + ligne * largeurBlock;
-
-			for (auto& trou : TroueV)
-			{
-				
-				if (box.getPosition() == trou.getPosition() && level.at(index) != 7)
-				{
-					BCheck.left = 200;
-					level.at(index) = 7;
-					box.setPosition(-100,-100);
-					break;
-				}
-				count++;
-			}
-
-			box.setTextureRect(BCheck);
-			window.draw(box);
-		}
+		BoxetTroue(boxes,TroueV,boiteCheck,BCheck,level,sizeBlock,window,largeurBlock);
 
 		if (Niveaureussi)
 		{

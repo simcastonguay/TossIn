@@ -78,3 +78,41 @@ void OuvrirSprite(sf::Texture& texture, std::string nom)
 		exit(1);
 	}
 }
+
+void BoxetTroue(std::vector<sf::RectangleShape>& boxes, std::vector<sf::RectangleShape>& TroueV, std::vector<sf::RectangleShape>& boiteCheck, sf::IntRect& BCheck, std::vector<int>& level, int sizeBlock, sf::RenderWindow& window, int largeurBlock)
+{
+
+	for (auto& box : boxes) {
+		for (auto& check : boiteCheck)
+		{
+			if (box.getPosition() == check.getPosition())
+			{
+				BCheck.left = 100;
+				break;
+			}
+			else
+			{
+				BCheck.left = 0;
+			}
+		}
+
+		int colonne = box.getPosition().x / sizeBlock;
+		int ligne = box.getPosition().y / sizeBlock;
+		int index = colonne + ligne * largeurBlock;
+
+		for (auto& trou : TroueV)
+		{
+
+			if (box.getPosition() == trou.getPosition() && level.at(index) != 7)
+			{
+				BCheck.left = 200;
+				level.at(index) = 7;
+				box.setPosition(-100, -100);
+				break;
+			}
+		}
+
+		box.setTextureRect(BCheck);
+		window.draw(box);
+	}
+}
