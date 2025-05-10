@@ -176,6 +176,7 @@
     <Text Include="level2.txt" />
     <Text Include="level3.txt" />
     <Text Include="level4.txt" />
+    <Text Include="level5.txt" />
     <Text Include="updateNiveau.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

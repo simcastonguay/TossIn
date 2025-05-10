@@ -141,5 +141,6 @@
     <Text Include="updateNiveau.txt">
       <Filter>Fichiers de ressources</Filter>
     </Text>
+    <Text Include="level5.txt" />
   </ItemGroup>
 </Project>
