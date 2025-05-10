@@ -142,8 +142,33 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="image\128Bricks.png" />
+    <Image Include="image\BGCharacterSelect.png" />
+    <Image Include="image\BGControle.png" />
+    <Image Include="image\BGHighScore.png" />
+    <Image Include="image\BGMainMenu.png" />
+    <Image Include="image\BGMap.png" />
+    <Image Include="image\BoutonActuel.png" />
+    <Image Include="image\BoutonActuelHover.png" />
+    <Image Include="image\BoutonComplete.png" />
+    <Image Include="image\BoutonComplete4.png" />
+    <Image Include="image\BoutonNonComplete.png" />
+    <Image Include="image\BoutonNonComplete4.png" />
+    <Image Include="image\Cats.png" />
+    <Image Include="image\Charger.png" />
+    <Image Include="image\ChargerHover.png" />
+    <Image Include="image\Controles.png" />
+    <Image Include="image\ControlesHover.png" />
+    <Image Include="image\FlecheDroite.png" />
+    <Image Include="image\FlecheGauche.png" />
+    <Image Include="image\HighScores.png" />
+    <Image Include="image\HighScoresHover.png" />
+    <Image Include="image\Jouer.png" />
+    <Image Include="image\JouerHover.png" />
     <Image Include="image\PenguinSheet.png" />
+    <Image Include="image\RenauMenu.png" />
     <Image Include="image\RenauTileSheet.png" />
+    <Image Include="image\Retour.png" />
+    <Image Include="image\RetourHover.png" />
     <Image Include="image\tileMap.png" />
   </ItemGroup>
   <ItemGroup>

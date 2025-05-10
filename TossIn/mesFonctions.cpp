@@ -170,7 +170,7 @@ void placerTileMap(int hauteurBlock, int largeurBlock, int sizeBlock, sf::IntRec
 }
 
 
-void loadTextureMap(std::ifstream& fichier, char c, std::vector<int>& level, const int totalBlock, const int largeurBlock, const int sizeBlock, sf::RectangleShape bonhomme, sf::Texture& textureBox, sf::IntRect bCheck, std::vector<sf::RectangleShape> &boxes, std::vector<sf::RectangleShape> &boiteCheck, std::vector<sf::RectangleShape> &troueV, int count)
+void loadTextureMap(std::ifstream& fichier, char c, std::vector<int>& level, const int totalBlock, const int largeurBlock, const int sizeBlock, sf::RectangleShape &bonhomme, sf::Texture& textureBox, sf::IntRect bCheck, std::vector<sf::RectangleShape> &boxes, std::vector<sf::RectangleShape> &boiteCheck, std::vector<sf::RectangleShape> &troueV, int count)
 {
 	while (fichier >> c && level.size() < totalBlock) {
 
@@ -207,20 +207,27 @@ void loadTextureMap(std::ifstream& fichier, char c, std::vector<int>& level, con
 			count++;
 		}
 	};
+
+	if (level.size() != totalBlock) {
+		cout << "Le fichier semble corrompu" << endl;
+	}
+	fichier.close();
+
 }
 
-int getEvent(sf::RenderWindow &window, sf::Event event, int dir)
+void getEvent(sf::RenderWindow &window, sf::Event event, int& dir, bool& loadNiveau)
 {
 	while (window.pollEvent(event))
 	{
 		if (event.type == Event::Closed) {
+			loadNiveau = false;
 			window.close();
 		}
 
 		else if (event.type == Event::KeyPressed) {
 			switch (event.key.code) {
 			case Keyboard::Escape:
-
+				loadNiveau = false;
 				window.close();
 				break;
 
@@ -246,7 +253,6 @@ int getEvent(sf::RenderWindow &window, sf::Event event, int dir)
 			}
 		}
 	}
-	return dir;
 }
 
 sf::Vector2f getFuturBoxPosition(sf::Vector2f futureBoxPosition, int dir)
@@ -272,4 +278,105 @@ sf::Vector2f getFuturBoxPosition(sf::Vector2f futureBoxPosition, int dir)
 	return futureBoxPosition;
 }
 
+std::ifstream openFichierLevel(int& indexNiveau)
+{
+	string nomLevel[5]{
+		"level1.txt",
+		"level2.txt",
+		"level3.txt",
+		"level4.txt"
+	};
+
+	ifstream fichier(nomLevel[indexNiveau]);
+
+	if (!fichier) {
+		cout << "Le fichier n'a pas pu ouvrir!" << endl;
+	}
+
+	return fichier;
+}
+
+sf::IntRect spriteBonhomme(int dir, sf::Vector2f& prochainePosition, sf::IntRect& rectBonhomme)
+{
+	switch (dir) {
+
+	case 1:
+		prochainePosition.y -= 100;
+		rectBonhomme.left = 100;
+		rectBonhomme.top = 0;
+		break;
+
+	case 2:
+		prochainePosition.y += 100;
+		rectBonhomme.left = 0;
+		rectBonhomme.top = 0;
+		break;
+
+	case 3:
+		prochainePosition.x += 100;
+		rectBonhomme.left = 0;
+		rectBonhomme.top = 100;
+		break;
+
+	case 4:
+		prochainePosition.x -= 100;
+		rectBonhomme.left = 100;
+		rectBonhomme.top = 200;
+		break;
+	}
+
+	return rectBonhomme;
+}
+
+int collisionBox(std::vector<sf::RectangleShape>& boxes, sf::RectangleShape& box, sf::Vector2f& futureBoxPosition, bool collision)
+{
+	for (const auto& autreBox : boxes) {
+		if (&autreBox != &box && autreBox.getPosition() == futureBoxPosition) {
+			collision = true;
+			break;
+		}
+	}
+	return collision;
+}
+
+void deplacementBox(bool &collision, bool &aPousseUneBoite, bool &deplacementAutorise, sf::RectangleShape& box, sf::Vector2f& futureBoxPosition)
+{
+	if (!collision) {
+		box.setPosition(futureBoxPosition);
+		aPousseUneBoite = true;
+	}
+	else {
+		deplacementAutorise = false;
+	}
+}
+
+void deplacementBonhomme(bool& deplacementAutorise, bool& aPousseUneBoite, sf::Vector2f prochainePosition, const std::vector<int>& level, int sizeBlock, int largeurBlock, sf::RectangleShape& bonhomme)
+{
+	if ((deplacementAutorise || aPousseUneBoite) && !collisionMur(prochainePosition, level, sizeBlock, largeurBlock) && !collisionTroue(prochainePosition, level, sizeBlock, largeurBlock)) {
+		bonhomme.setPosition(prochainePosition);
+	}
+
+}
+
+void drawBonhomme(sf::RectangleShape& bonhomme, sf::RenderWindow& window, sf::Texture& textureBonhomme, sf::IntRect& rectBonhomme)
+{
+	bonhomme.setTexture(&textureBonhomme);
+	bonhomme.setTextureRect(rectBonhomme);
+	window.draw(bonhomme);
+
+}
+
+void updateFichier(std::ofstream& updateNiveau, int &indexNiveau, std::string nom)
+{
+	updateNiveau.open(nom);
+
+	if (!updateNiveau) {
+		cout << "Le fichier n'a pas pu ouvrir!" << endl;
+		exit(1);
+	}
+
+	indexNiveau++;
+	updateNiveau << indexNiveau;
+	updateNiveau.close();
+}
 

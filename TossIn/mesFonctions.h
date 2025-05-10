@@ -16,8 +16,22 @@ void placerTileMap(int hauteurBlock, int largeurBlock, int sizeBlock, sf::IntRec
 
 int collisionTroue(sf::Vector2f prochainePosition, const std::vector<int>& level, int sizeBlock, int largeurBlock);
 
-void loadTextureMap(std::ifstream& fichier, char c, std::vector<int>& level, const int totalBlock, const int largeurBlock, const int sizeBlock, sf::RectangleShape bonhomme, sf::Texture& textureBox, sf::IntRect bCheck, std::vector<sf::RectangleShape> &boxes, std::vector<sf::RectangleShape> &boiteCheck, std::vector<sf::RectangleShape> &troueV, int count);
+void loadTextureMap(std::ifstream& fichier, char c, std::vector<int>& level, const int totalBlock, const int largeurBlock, const int sizeBlock, sf::RectangleShape &bonhomme, sf::Texture& textureBox, sf::IntRect bCheck, std::vector<sf::RectangleShape> &boxes, std::vector<sf::RectangleShape> &boiteCheck, std::vector<sf::RectangleShape> &troueV, int count);
 
-int getEvent(sf::RenderWindow &window, sf::Event event, int dir);
+void getEvent(sf::RenderWindow &window, sf::Event event, int& dir, bool& loadNiveau);
 
 sf::Vector2f getFuturBoxPosition(sf::Vector2f futureBoxPosition, int dir);
+
+std::ifstream openFichierLevel(int& indexNiveau);
+
+sf::IntRect spriteBonhomme(int dir, sf::Vector2f& prochainePosition, sf::IntRect& rectBonhomme);
+
+int collisionBox(std::vector<sf::RectangleShape> &boxes, sf::RectangleShape &box, sf::Vector2f &futureBoxPosition, bool collision);
+
+void deplacementBox(bool &collision, bool &aPousseUneBoite, bool &deplacementAutorise, sf::RectangleShape& box, sf::Vector2f& futureBoxPosition);
+
+void deplacementBonhomme(bool& deplacementAutorise, bool& aPousseUneBoite, sf::Vector2f prochainePosition, const std::vector<int>& level, int sizeBlock, int largeurBlock, sf::RectangleShape &bonhomme);
+
+void drawBonhomme(sf::RectangleShape& bonhomme, sf::RenderWindow& window, sf::Texture& textureBonhomme, sf::IntRect& rectBonhomme);
+
+void updateFichier(std::ofstream& updateNiveau, int &indexNiveau, std::string nom);

@@ -49,6 +49,81 @@
     <Image Include="image\RenauTileSheet.png">
       <Filter>Fichiers de ressources</Filter>
     </Image>
+    <Image Include="image\RenauMenu.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="image\Cats.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="image\Charger.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="image\Jouer.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="image\ChargerHover.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="image\Controles.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="image\ControlesHover.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="image\HighScores.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="image\HighScoresHover.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="image\FlecheDroite.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="image\FlecheGauche.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="image\JouerHover.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="image\Retour.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="image\RetourHover.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="image\BGCharacterSelect.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="image\BGMainMenu.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="image\BGControle.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="image\BGHighScore.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="image\BGMap.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="image\BoutonActuel.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="image\BoutonActuelHover.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="image\BoutonComplete.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="image\BoutonComplete4.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="image\BoutonNonComplete.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="image\BoutonNonComplete4.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="level1.txt">
