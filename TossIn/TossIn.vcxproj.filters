@@ -158,13 +158,13 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <Media Include="menu.wav">
-      <Filter>Fichiers de ressources</Filter>
-    </Media>
     <Media Include="popPerso&amp;deplacement.wav">
       <Filter>Fichiers de ressources</Filter>
     </Media>
     <Media Include="placing.wav">
+      <Filter>Fichiers de ressources</Filter>
+    </Media>
+    <Media Include="menu.wav">
       <Filter>Fichiers de ressources</Filter>
     </Media>
   </ItemGroup>
