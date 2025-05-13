@@ -2,6 +2,7 @@
 #include<vector>
 #include <fstream>
 #include<SFML/Graphics.hpp>
+#include<SFML/Audio.hpp>
 #include"mesFonctions.h"
 
 using namespace std;
@@ -215,8 +216,9 @@ void loadTextureMap(std::ifstream& fichier, char c, std::vector<int>& level, con
 
 }
 
-void getEvent(sf::RenderWindow &window, sf::Event event, int& dir, bool& loadNiveau)
+void getEvent(sf::RenderWindow &window, sf::Event event, int& dir, bool& loadNiveau, sf::Sound &cliqueDeplacement)
 {
+
 	while (window.pollEvent(event))
 	{
 		if (event.type == Event::Closed) {
@@ -232,22 +234,22 @@ void getEvent(sf::RenderWindow &window, sf::Event event, int& dir, bool& loadNiv
 				break;
 
 			case Keyboard::Up:
-
+				cliqueDeplacement.play();
 				dir = 1;
 				break;
 
 			case Keyboard::Right:
-
+				cliqueDeplacement.play();
 				dir = 3;
 				break;
 
 			case Keyboard::Down:
-
+				cliqueDeplacement.play();
 				dir = 2;
 				break;
 
 			case Keyboard::Left:
-
+				cliqueDeplacement.play();
 				dir = 4;
 				break;
 			}
@@ -355,6 +357,7 @@ void deplacementBonhomme(bool& deplacementAutorise, bool& aPousseUneBoite, sf::V
 {
 	if ((deplacementAutorise || aPousseUneBoite) && !collisionMur(prochainePosition, level, sizeBlock, largeurBlock) && !collisionTroue(prochainePosition, level, sizeBlock, largeurBlock)) {
 		bonhomme.setPosition(prochainePosition);
+		
 	}
 
 }

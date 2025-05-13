@@ -1,5 +1,6 @@
 ﻿#include<iostream>
 #include<SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include<vector>
 #include<string>
 #include<fstream>
@@ -43,6 +44,24 @@ int main() {
     sf::Sprite personnage;
     personnage.setTexture(texturesPersonnages[selection]);
     personnage.setPosition(420, 155);
+
+    ////////////////////////MUSIQUES////////////////////////
+
+    sf::Music musicMenu;
+    musicMenu.openFromFile("menu.wav");
+    musicMenu.setLoop(true);
+    musicMenu.play();
+
+    sf::SoundBuffer deplacement;
+    deplacement.loadFromFile("popPerso&deplacement.wav");
+    sf::Sound cliqueDeplacement;
+    cliqueDeplacement.setBuffer(deplacement);
+
+    sf::SoundBuffer goodPlacing;
+    goodPlacing.loadFromFile("placing.wav");
+    sf::Sound bonEmplacement;
+    bonEmplacement.setBuffer(goodPlacing);
+
 
     ///////////////////BACKGROUND DU MENU///////////////////
 
@@ -230,7 +249,7 @@ int main() {
 
         // on inspecte tous les évènements de la fenêtre qui ont été émis depuis la précédente     itération
         Event event;
-
+       
 
         while (windowMenu.pollEvent(event))
         {
@@ -284,6 +303,7 @@ int main() {
 
                             if (characterEvent.type == Event::Closed)
                             {
+                                
                                 windowCharacter.close();
                             }
                             else if (characterEvent.type == Event::KeyPressed)
@@ -292,27 +312,32 @@ int main() {
                                 {
                                 case Keyboard::Escape:
                                     windowCharacter.close();
-                                    //  music.stop();
                                     break;
                                 }
                             }
 
                             if (characterEvent.type == Event::KeyPressed) {
-                                if (characterEvent.key.code == sf::Keyboard::D) {
+                                
+                                if (characterEvent.key.code == sf::Keyboard::D) { 
+                                    cliqueDeplacement.play();
+                                   
                                     selection = (selection + 1) % texturesPersonnages.size(); //peut pas faire selection++ sinon fait pas de boucle
                                     personnage.setTexture(texturesPersonnages[selection]);
-                                    cout << "1";
+                                   
                                 }
                             }
                             if (characterEvent.type == Event::KeyPressed) {
+                               
                                 if (characterEvent.key.code == sf::Keyboard::A) {
+                                    cliqueDeplacement.play();
+   
                                     selection--;
-                                    cout << "2";
                                     if (selection < 0)
                                     {
                                         selection = texturesPersonnages.size() - 1; //vas au dernier (ici le 3e)
                                     }
                                     personnage.setTexture(texturesPersonnages[selection]);
+                                    
                                 }
                             }
                             else if (optionMenuJouer.getGlobalBounds().contains(optionsJouerPerso))
@@ -327,13 +352,13 @@ int main() {
 
                                     sf::Texture menuRetour;
                                     if (!menuRetour.loadFromFile("image/Retour.png")) {
-                                        std::cout << "Erreur de chargement de la texture du menu.\n";
+                                        std::cout << "Erreur de chargement de la texture du bouton retour.\n";
                                         return 1;
                                     }
 
                                     sf::Texture menuRetourHover;
                                     if (!menuRetourHover.loadFromFile("image/RetourHover.png")) {
-                                        std::cout << "Erreur de chargement de la texture du menu.\n";
+                                        std::cout << "Erreur de chargement de la texture du bouton retour en surbrillance.\n";
                                         return 1;
                                     }
 
@@ -343,36 +368,36 @@ int main() {
 
                                     sf::Texture boutonMap;
                                     if (!boutonMap.loadFromFile("image/BoutonNonComplete.png")) {
-                                        std::cout << "Erreur de chargement de la texture du menu.\n";
+                                        std::cout << "Erreur de chargement de la texture du bouton non completer.\n";
                                         return 1;
                                     }
 
                                     sf::Texture boutonMapHover;
                                     if (!boutonMapHover.loadFromFile("image/HoverBoutonNonComplete.png")) {
-                                        std::cout << "Erreur de chargement de la texture du menu.\n";
+                                        std::cout << "Erreur de chargement de la texture du bouton non completer en surbrillance.\n";
                                         return 1;
                                     }
 
                                     sf::Texture boutonComplete;
                                     if (!boutonComplete.loadFromFile("image/BoutonComplete.png")) {
-                                        std::cout << "Erreur de chargement de la texture du menu.\n";
+                                        std::cout << "Erreur de chargement de la texture du bouton completer.\n";
                                         return 1;
                                     }
 
                                     sf::Texture boutonCompleteHover;
                                     if (!boutonCompleteHover.loadFromFile("image/HoverBoutonComplete.png")) {
-                                        std::cout << "Erreur de chargement de la texture du menu.\n";
+                                        std::cout << "Erreur de chargement de la texture du bouton completer en surbrillance.\n";
                                         return 1;
                                     }
 
                                     sf::Texture boutonActuel;
                                     if (!boutonActuel.loadFromFile("image/BoutonActuel.png")) {
-                                        std::cout << "Erreur de chargement de la texture du menu.\n";
+                                        std::cout << "Erreur de chargement de la texture du bouton actuel.\n";
                                         return 1;
                                     }
                                     sf::Texture boutonActuelHover;
                                     if (!boutonActuelHover.loadFromFile("image/BoutonActuelHover.png")) {
-                                        std::cout << "Erreur de chargement de la texture du menu.\n";
+                                        std::cout << "Erreur de chargement de la texture du bouton actuel en surbrillance.\n";
                                         return 1;
                                     }
 
@@ -466,7 +491,6 @@ int main() {
                                                 {
                                                 case Keyboard::Escape:
                                                     windowMap.close();
-                                                    //  music.stop();
                                                     break;
                                                 }
                                             }
@@ -483,11 +507,8 @@ int main() {
                                                 {
                                                     indexNiveau = 0;
                                                     fichier = openFichierLevel(indexNiveau);
-                                                    /*windowMenu.close();
-                                                    windowCharacter.close();
-                                                    windowMap.close();*/
                                                     loadNiveau = true;
-                                                    //break;
+                                                    
                                                 }
                                             }
                                             else if (optionBoutonMap2.getGlobalBounds().contains(optionsBoutonMap))
@@ -504,11 +525,7 @@ int main() {
                                                 {
                                                     indexNiveau = 1;
                                                     fichier = openFichierLevel(indexNiveau);
-                                                    /*windowMenu.close();
-                                                    windowCharacter.close();
-                                                    windowMap.close();*/
                                                     loadNiveau = true;
-                                                    //break;
                                                 }
                                             }
                                             else if (optionBoutonMap3.getGlobalBounds().contains(optionsBoutonMap))
@@ -528,11 +545,7 @@ int main() {
                                                 {
                                                     indexNiveau = 2;
                                                     fichier = openFichierLevel(indexNiveau);
-                                                    /*windowMenu.close();
-                                                    windowCharacter.close();
-                                                    windowMap.close();*/
                                                     loadNiveau = true;
-                                                    //break;
 
                                                 }
                                             }
@@ -553,11 +566,7 @@ int main() {
                                                 {
                                                     indexNiveau = 3;
                                                     fichier = openFichierLevel(indexNiveau);
-                                                    /*windowMenu.close();
-                                                    windowCharacter.close();
-                                                    windowMap.close();*/
                                                     loadNiveau = true;
-                                                    //break;
 
                                                 }
                                             }
@@ -579,7 +588,6 @@ int main() {
                                                     indexNiveau = 4;
                                                     fichier = openFichierLevel(indexNiveau);
                                                     loadNiveau = true;
-                                                    //break;
                                                 }
                                             }
                                             else if (optionMenuRetour.getGlobalBounds().contains(optionsRetourMap))
@@ -794,6 +802,7 @@ int main() {
         windowMenu.display();
 
         if (loadNiveau == true) {
+            musicMenu.stop();
             int width = 1600, height = 1000;
             RenderWindow window(VideoMode(width, height), "Toss in!");
             window.setFramerateLimit(60);
@@ -869,7 +878,7 @@ int main() {
 
                 Event event{};
 
-                getEvent(window, event, dir, loadNiveau);
+                getEvent(window, event, dir, loadNiveau, cliqueDeplacement);
 
                 Vector2f prochainePosition = bonhomme.getPosition();
 
@@ -895,7 +904,7 @@ int main() {
                 }
 
                 deplacementBonhomme(deplacementAutorise, aPousseUneBoite, prochainePosition, level, sizeBlock, largeurBlock, bonhomme);
-
+                
                 window.clear();
                 window.draw(fondEcran);
 
@@ -913,6 +922,7 @@ int main() {
                     updateFichier(updateNiveau, indexNiveau, "updateNiveau.txt");
                     loadNiveau = false;
                     window.close();
+                    
                 }
                 window.display();
 

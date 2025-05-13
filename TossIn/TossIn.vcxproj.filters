@@ -124,6 +124,18 @@
     <Image Include="image\BoutonNonComplete4.png">
       <Filter>Fichiers de ressources</Filter>
     </Image>
+    <Image Include="D:\TossIn-master\TossIn-master\TossIn\image\GenevieveMenu.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="D:\TossIn-master\TossIn-master\TossIn\image\GenevieveTileSheet.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="D:\TossIn-master\TossIn-master\TossIn\image\JosianneMenu.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="D:\TossIn-master\TossIn-master\TossIn\image\JosianneTileSheet.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="level1.txt">
@@ -141,6 +153,19 @@
     <Text Include="updateNiveau.txt">
       <Filter>Fichiers de ressources</Filter>
     </Text>
-    <Text Include="level5.txt" />
+    <Text Include="level5.txt">
+      <Filter>Fichiers de ressources</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="menu.wav">
+      <Filter>Fichiers de ressources</Filter>
+    </Media>
+    <Media Include="popPerso&amp;deplacement.wav">
+      <Filter>Fichiers de ressources</Filter>
+    </Media>
+    <Media Include="placing.wav">
+      <Filter>Fichiers de ressources</Filter>
+    </Media>
   </ItemGroup>
 </Project>
