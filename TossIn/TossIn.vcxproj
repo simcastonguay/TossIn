@@ -183,6 +183,11 @@
     <Text Include="level5.txt" />
     <Text Include="updateNiveau.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="menu.wav" />
+    <Media Include="placing.wav" />
+    <Media Include="popPerso&amp;deplacement.wav" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
