@@ -124,6 +124,18 @@
     <Image Include="image\BoutonNonComplete4.png">
       <Filter>Fichiers de ressources</Filter>
     </Image>
+    <Image Include="image\JosianneTileSheet.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="image\JosianneMenu.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="image\GenevieveMenu.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="image\GenevieveTileSheet.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="level1.txt">

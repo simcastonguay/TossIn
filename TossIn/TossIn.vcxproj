@@ -141,10 +141,6 @@
     <ClInclude Include="mure.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="D:\TossIn-master\TossIn-master\TossIn\image\GenevieveMenu.png" />
-    <Image Include="D:\TossIn-master\TossIn-master\TossIn\image\GenevieveTileSheet.png" />
-    <Image Include="D:\TossIn-master\TossIn-master\TossIn\image\JosianneMenu.png" />
-    <Image Include="D:\TossIn-master\TossIn-master\TossIn\image\JosianneTileSheet.png" />
     <Image Include="image\128Bricks.png" />
     <Image Include="image\BGCharacterSelect.png" />
     <Image Include="image\BGControle.png" />
@@ -164,8 +160,12 @@
     <Image Include="image\ControlesHover.png" />
     <Image Include="image\FlecheDroite.png" />
     <Image Include="image\FlecheGauche.png" />
+    <Image Include="image\GenevieveMenu.png" />
+    <Image Include="image\GenevieveTileSheet.png" />
     <Image Include="image\HighScores.png" />
     <Image Include="image\HighScoresHover.png" />
+    <Image Include="image\JosianneMenu.png" />
+    <Image Include="image\JosianneTileSheet.png" />
     <Image Include="image\Jouer.png" />
     <Image Include="image\JouerHover.png" />
     <Image Include="image\PenguinSheet.png" />
