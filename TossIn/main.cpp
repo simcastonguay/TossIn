@@ -10,83 +10,120 @@ using namespace sf;
 
 
 int main() {
-	RenderWindow windowMenu(VideoMode(1200, 800), "Main Menu"); //Menu Principal
+    RenderWindow windowMenu(VideoMode(1200, 800), "Menu Principal"); //Menu Principal
 
     int indexNiveau = 0;
     ifstream fichier;
 
     bool loadNiveau = false;
 
-	/////////////////TEXTURE PERSONNAGES////////////////////
-	vector<sf::Texture> texturesPersonnages;
+    /////////////////VECTEUR ET TEXTURE PERSONNAGES////////////////////
 
-	sf::Texture Renau;
-    ouvrirSprite(Renau, "image/RenauMenu.png");
-	texturesPersonnages.push_back(Renau);
+    vector<sf::Texture> texturesPersonnages;
 
-	sf::Texture Cats;
-    ouvrirSprite(Cats, "image/Cats.png");
-	texturesPersonnages.push_back(Cats);
+    sf::Texture renau;
+    if (!renau.loadFromFile("image/RenauMenu.png")) {
+        std::cout << "Erreur de chargement de la texture Renau.\n";
+    }
+    texturesPersonnages.push_back(renau);
 
-	int selection = 0; // le numéro du personnage
-	sf::Sprite personnage;
-	personnage.setTexture(texturesPersonnages[selection]);
-	personnage.setPosition(420, 155);
+    sf::Texture genevieve;
+    if (!genevieve.loadFromFile("image/GenevieveMenu.png")) {
+        std::cout << "Erreur de chargement de la texture de Genevieve.\n";
+    }
+    texturesPersonnages.push_back(genevieve);
 
-     ///////////////////BACKGROUND DU MENU///////////////////
-    sf::Texture MainMenu;
-    ouvrirSprite(MainMenu, "image/BGMainMenu.png");
-    sf::RectangleShape Menu;
-    Menu.setSize({ 1200.f, 800.f });
-    Menu.setTexture(&MainMenu);
+    sf::Texture josianne;
+    if (!josianne.loadFromFile("image/JosianneMenu.png")) {
+        std::cout << "Erreur de chargement de la texture de Josianne.\n";
+    }
+    texturesPersonnages.push_back(josianne);
 
-    sf::Texture SelectionPersonnage;
-    ouvrirSprite(SelectionPersonnage, "image/BGCharacterSelect.png");
-    sf::RectangleShape MenuPersonnage;
-    MenuPersonnage.setSize({ 1200.f, 800.f });
-    MenuPersonnage.setTexture(&SelectionPersonnage);
+    int selection = 0; // le numéro du personnage
+    sf::Sprite personnage;
+    personnage.setTexture(texturesPersonnages[selection]);
+    personnage.setPosition(420, 155);
 
-    sf::Texture ChargerPartie;
-    if (!ChargerPartie.loadFromFile("image/BGCharacterSelect.png")) {
-        std::cout << "Erreur de chargement de la texture du menu.\n";
+    ///////////////////BACKGROUND DU MENU///////////////////
+
+    sf::Texture mainMenu;
+    if (!mainMenu.loadFromFile("image/BGMainMenu.png")) {
+        std::cout << "Erreur de chargement de la texture du menu principal.\n";
         return 1;
     }
-    ouvrirSprite(ChargerPartie, "image/BGCharacterSelect.png");
-    sf::RectangleShape MenuChargerPartie;
-    MenuChargerPartie.setSize({ 1200.f, 800.f });
-    MenuChargerPartie.setTexture(&ChargerPartie);
+    sf::RectangleShape menu;
+    menu.setSize({ 1200.f, 800.f });
+    menu.setTexture(&mainMenu);
 
-    sf::Texture BGControles;
-    ouvrirSprite(BGControles, "image/BGControle.png");
-    sf::RectangleShape MenuControle;
-    MenuControle.setSize({ 1200.f, 800.f });
-    MenuControle.setTexture(&BGControles);
+    sf::Texture selectionPersonnage;
+    if (!selectionPersonnage.loadFromFile("image/BGCharacterSelect.png")) {
+        std::cout << "Erreur de chargement de la texture du menu des personnages.\n";
+        return 1;
+    }
+    sf::RectangleShape menuPersonnage;
+    menuPersonnage.setSize({ 1200.f, 800.f });
+    menuPersonnage.setTexture(&selectionPersonnage);
 
-    sf::Texture BGhs;
-    ouvrirSprite(BGhs, "image/BGHighScore.png");
+    sf::Texture chargerPartie;
+    if (!chargerPartie.loadFromFile("image/BGCharacterSelect.png")) {
+        std::cout << "Erreur de chargement de la texture du menu de chargement de la partie.\n";
+        return 1;
+    }
+    sf::RectangleShape menuChargerPartie;
+    menuChargerPartie.setSize({ 1200.f, 800.f });
+    menuChargerPartie.setTexture(&chargerPartie);
+
+    sf::Texture bgControles;
+    if (!bgControles.loadFromFile("image/BGControle.png")) {
+        std::cout << "Erreur de chargement de la texture du menu des controles.\n";
+        return 1;
+    }
+    sf::RectangleShape menuControle;
+    menuControle.setSize({ 1200.f, 800.f });
+    menuControle.setTexture(&bgControles);
+
+    sf::Texture bgHS;
+    if (!bgHS.loadFromFile("image/BGHighScore.png")) {
+        std::cout << "Erreur de chargement de la texture du menu des meilleurs score.\n";
+        return 1;
+    }
     sf::RectangleShape menuHS;
     menuHS.setSize({ 1200.f, 800.f });
-    menuHS.setTexture(&BGhs);
+    menuHS.setTexture(&bgHS);
 
-    sf::Texture BGMap;
-    ouvrirSprite(BGMap, "image/BGMap.png");
+    sf::Texture bgMap;
+    if (!bgMap.loadFromFile("image/BGMap.png")) {
+        std::cout << "Erreur de chargement de la texture du menu de la carte.\n";
+        return 1;
+    }
     sf::RectangleShape menuMap;
     menuMap.setSize({ 1200.f, 800.f });
-    menuMap.setTexture(&BGMap);
+    menuMap.setTexture(&bgMap);
 
-     //////////////////BOUTTONS DU MENU PRINCIPAL///////////
+    //////////////////BOUTONS DU MENU PRINCIPAL///////////
+
     sf::Texture menuJouer;
-    ouvrirSprite(menuJouer, "image/Jouer.png");
+    if (!menuJouer.loadFromFile("image/Jouer.png")) {
+        std::cout << "Erreur de chargement de la texture du bouton jouer.\n";
+        return 1;
+    }
+
     sf::RectangleShape mainJouer;
     mainJouer.setSize({ 237.f, 74.f });
     mainJouer.setPosition(10, 345);
     mainJouer.setTexture(&menuJouer);
 
     sf::Texture menuCharger;
-    ouvrirSprite(menuCharger, "image/Charger.png");
+    if (!menuCharger.loadFromFile("image/Charger.png")) {
+        std::cout << "Erreur de chargement de la texture du bouton charger.\n";
+        return 1;
+    }
 
     sf::Texture menuChargerHover;
-    ouvrirSprite(menuChargerHover, "image/ChargerHover.png");
+    if (!menuChargerHover.loadFromFile("image/ChargerHover.png")) {
+        std::cout << "Erreur de chargement de la texture du bouton charger en surbrillance.\n";
+        return 1;
+    }
 
     sf::RectangleShape mainCharger;
     mainCharger.setSize({ 331.f, 75.f });
@@ -94,10 +131,16 @@ int main() {
     mainCharger.setTexture(&menuCharger);
 
     sf::Texture menuControl;
-    ouvrirSprite(menuControl, "image/Controles.png");
+    if (!menuControl.loadFromFile("image/Controles.png")) {
+        std::cout << "Erreur de chargement de la texture du bouton controles.\n";
+        return 1;
+    }
 
     sf::Texture menuControlHover;
-    ouvrirSprite(menuControlHover, "image/ControlesHover.png");
+    if (!menuControlHover.loadFromFile("image/ControlesHover.png")) {
+        std::cout << "Erreur de chargement de la texture du bouton controles en surbrillance.\n";
+        return 1;
+    }
 
     sf::RectangleShape mainControl;
     mainControl.setSize({ 407.f, 72.f });
@@ -105,10 +148,15 @@ int main() {
     mainControl.setTexture(&menuControl);
 
     sf::Texture menuBoutonHS;
-    ouvrirSprite(menuBoutonHS, "image/HighScores.png");
-
+    if (!menuBoutonHS.loadFromFile("image/HighScores.png")) {
+        std::cout << "Erreur de chargement de la texture du bouton meilleurs scores.\n";
+        return 1;
+    }
     sf::Texture menuHSHover;
-    ouvrirSprite(menuHSHover, "image/HighScoresHover.png");
+    if (!menuHSHover.loadFromFile("image/HighScoresHover.png")) {
+        std::cout << "Erreur de chargement de la texture du bouton meilleurs scores en srubrillance.\n";
+        return 1;
+    }
 
     sf::RectangleShape mainHS;
     mainHS.setSize({ 475.f, 76.f });
@@ -116,32 +164,44 @@ int main() {
     mainHS.setTexture(&menuBoutonHS);
 
 
-    //////////////BOUTTON DANS LES SOUS-MENUS////////////
+    //////////////BOUTON DANS LES SOUS-MENUS////////////
+
     sf::RectangleShape optionMenuJouer({ 237.f, 74.f });
     optionMenuJouer.setPosition(953, 716);
     optionMenuJouer.setTexture(&menuJouer);
 
     sf::Texture menuJouerHover;
-    ouvrirSprite(menuJouerHover, "image/JouerHover.png");
-
+    if (!menuJouerHover.loadFromFile("image/JouerHover.png")) {
+        std::cout << "Erreur de chargement de la texture du bouton jouer en surbrillance.\n";
+        return 1;
+    }
     sf::Texture menuRetour;
-    ouvrirSprite(menuRetour, "image/Retour.png");
+    if (!menuRetour.loadFromFile("image/Retour.png")) {
+        std::cout << "Erreur de chargement de la texture du bouton retour.\n";
+        return 1;
+    }
 
     sf::RectangleShape optionMenuRetour({ 284.f, 74.f });
     optionMenuRetour.setTexture(&menuRetour);
     optionMenuRetour.setPosition(10, 10);
 
     sf::Texture menuRetourHover;
-    ouvrirSprite(menuRetourHover, "image/RetourHover.png");
+    if (!menuRetourHover.loadFromFile("image/RetourHover.png")) {
+        std::cout << "Erreur de chargement de la texture du bouton retour en surbrillance.\n";
+        return 1;
+    }
 
     ///////////////////// FLECHE PERSONNAGE /////////////////////////
 
     sf::Texture flecheGauche;
-    ouvrirSprite(flecheGauche, "image/FlecheGauche.png");
+    if (!flecheGauche.loadFromFile("image/FlecheGauche.png")) {
+        std::cout << "Erreur de chargement de la texture de la touche A.\n";
+        return 1;
+    }
 
     sf::Texture flecheDroite;
     if (!flecheDroite.loadFromFile("image/FlecheDroite.png")) {
-        std::cout << "Erreur de chargement de la texture du menu.\n";
+        std::cout << "Erreur de chargement de la texture de la touche D.\n";
         return 1;
     }
 
@@ -153,12 +213,15 @@ int main() {
     optionPersoDroite.setTexture(&flecheDroite);
     optionPersoDroite.setPosition(840, 280);
 
-    /////////////////////////sauvegarde Niveau////////////////////////////
+    /////////////////////////SAUVEGARDE DE NIVEAU////////////////////////////
 
     ifstream index;
     OpenFichier(index, indexNiveau, "updateNiveau.txt");
 
-    
+    ////////////////////////COMPTEUR HIGH-SCORE////////////////////////////
+
+    ifstream meilleursScores;
+    //vector<sf::> compteur;
 
 
     while (windowMenu.isOpen())
@@ -171,8 +234,9 @@ int main() {
 
         while (windowMenu.pollEvent(event))
         {
+            ///////////////DÉTECTE LA POSITION DE LA SOURIS SUR LES BOUTONS////////////////
             sf::Vector2f optionsMenu = windowMenu.mapPixelToCoords(sf::Mouse::getPosition(windowMenu));
-            // sf::Vector2f optionsQuitter = window.mapPixelToCoords(sf::Mouse::getPosition(window));
+            ////////////////PERMET DE RESET LA TEXTURE QUAND SOURIS N'EST PLUS DESSUS////////////////
             mainJouer.setTexture(&menuJouer);
             mainCharger.setTexture(&menuCharger);
             mainControl.setTexture(&menuControl);
@@ -211,11 +275,10 @@ int main() {
 
                         while (windowCharacter.pollEvent(characterEvent))
                         {
+                            ///////////////DÉTECTE LA POSITION DE LA SOURIS SUR LES BOUTONS////////////////
                             sf::Vector2f optionsRetourPerso = windowCharacter.mapPixelToCoords(sf::Mouse::getPosition(windowCharacter));
                             sf::Vector2f optionsJouerPerso = windowCharacter.mapPixelToCoords(sf::Mouse::getPosition(windowCharacter));
-
-
-
+                            ////////////////PERMET DE RESET LA TEXTURE QUAND SOURIS N'EST PLUS DESSUS////////////////
                             optionMenuJouer.setTexture(&menuJouer);
                             optionMenuRetour.setTexture(&menuRetour);
 
@@ -334,16 +397,17 @@ int main() {
                                     optionBoutonMap5.setPosition(1016, 358);
                                     optionBoutonMap5.setTexture(&boutonMap);
 
-                                    while (windowMap.isOpen()&& !loadNiveau)
+                                    while (windowMap.isOpen() && !loadNiveau)
                                     {
                                         Event mapEvent;
 
                                         while (windowMap.pollEvent(mapEvent))
                                         {
+                                            ///////////////DÉTECTE LA POSITION DE LA SOURIS SUR LES BOUTONS////////////////
                                             sf::Vector2f optionsRetourMap = windowMap.mapPixelToCoords(sf::Mouse::getPosition(windowMap));
                                             sf::Vector2f optionsBoutonMap = windowMap.mapPixelToCoords(sf::Mouse::getPosition(windowMap));
 
-                                          
+
                                             switch (indexNiveau) {
                                             case 0:
                                                 optionBoutonMap1.setTexture(&boutonActuel);
@@ -362,7 +426,7 @@ int main() {
                                                 optionBoutonMap5.setTexture(&boutonMap);
                                                 optionMenuRetour.setTexture(&menuRetour);
                                                 break;
-                                                
+
                                             case 2:
                                                 optionBoutonMap1.setTexture(&boutonComplete);
                                                 optionBoutonMap2.setTexture(&boutonComplete);
@@ -390,7 +454,7 @@ int main() {
                                                 optionMenuRetour.setTexture(&menuRetour);
                                                 break;
                                             }
-                                          
+
 
                                             if (mapEvent.type == Event::Closed)
                                             {
@@ -514,9 +578,6 @@ int main() {
                                                 {
                                                     indexNiveau = 4;
                                                     fichier = openFichierLevel(indexNiveau);
-                                                    /*windowMenu.close();
-                                                    windowCharacter.close();
-                                                    windowMap.close();*/
                                                     loadNiveau = true;
                                                     //break;
                                                 }
@@ -527,8 +588,7 @@ int main() {
 
                                                 if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
                                                 {
-                                                    cout << "1";
-                                                    //windowMap.close();
+                                                    windowMap.close();
                                                 }
                                             }
                                             windowMap.clear();
@@ -561,7 +621,7 @@ int main() {
 
                         if (!loadNiveau) {
                             windowCharacter.clear();
-                            windowCharacter.draw(MenuPersonnage);
+                            windowCharacter.draw(menuPersonnage);
                             windowCharacter.draw(personnage);
                             windowCharacter.draw(optionPersoDroite);
                             windowCharacter.draw(optionPersoGauche);
@@ -614,7 +674,9 @@ int main() {
 
                         while (windowControles.pollEvent(controleEvent))
                         {
+                            ///////////////DÉTECTE LA POSITION DE LA SOURIS SUR LES BOUTONS////////////////
                             sf::Vector2f optionsRetour = windowControles.mapPixelToCoords(sf::Mouse::getPosition(windowControles));
+                            ////////////////PERMET DE RESET LA TEXTURE QUAND SOURIS N'EST PLUS DESSUS////////////////
                             optionMenuRetour.setTexture(&menuRetour);
 
                             if (controleEvent.type == Event::Closed)
@@ -644,7 +706,7 @@ int main() {
 
 
                             windowControles.clear();
-                            windowControles.draw(MenuControle);
+                            windowControles.draw(menuControle);
                             windowControles.draw(optionMenuRetour);
                             windowControles.display();
                         }
@@ -683,7 +745,9 @@ int main() {
 
                         while (windowHS.pollEvent(highscoreEvent))
                         {
+                            ///////////////DÉTECTE LA POSITION DE LA SOURIS SUR LES BOUTONS////////////////
                             sf::Vector2f optionsRetour = windowHS.mapPixelToCoords(sf::Mouse::getPosition(windowHS));
+                            ////////////////PERMET DE RESET LA TEXTURE QUAND SOURIS N'EST PLUS DESSUS////////////////
                             optionMenuRetour.setTexture(&menuRetour);
                             if (highscoreEvent.type == Event::Closed)
                             {
@@ -722,7 +786,7 @@ int main() {
         }
 
         windowMenu.clear();
-        windowMenu.draw(Menu);
+        windowMenu.draw(menu);
         windowMenu.draw(mainJouer);
         windowMenu.draw(mainCharger);
         windowMenu.draw(mainControl);
@@ -740,7 +804,7 @@ int main() {
             fondEcran.setFillColor(Color::Black);
 
 
-            //bonhomme
+            //TEXTURE BONHOMME
             RectangleShape bonhomme;
             bonhomme.setPosition(200, 200);
             bonhomme.setSize(Vector2f(100, 100));
@@ -750,7 +814,7 @@ int main() {
             ouvrirSprite(textureBonhomme, "image/renauTileSheet.png");
             IntRect rectBonhomme(0, 0, 100, 100);
 
-
+            //TEXTURE DES MURS//
             Texture textureMure;
             ouvrirSprite(textureMure, "image/tileMap.png");
 
@@ -856,5 +920,5 @@ int main() {
         }
 
     }
-   
+
 };
