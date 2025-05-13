@@ -73,7 +73,7 @@ void ouvrirSprite(sf::Texture& texture, std::string nom)
 {
 	if (!texture.loadFromFile(nom))
 	{
-		cout << "L'ouverture du Sprite ne fonctionne pas";
+		cout << "L'ouverture du Fichier image ne fonctionne pas" << nom;
 		system("Pause>0");
 		exit(1);
 	}

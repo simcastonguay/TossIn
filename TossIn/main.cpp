@@ -21,15 +21,11 @@ int main() {
 	vector<sf::Texture> texturesPersonnages;
 
 	sf::Texture Renau;
-	if (!Renau.loadFromFile("image/RenauMenu.png")) {
-		std::cout << "Erreur de chargement de la texture Renau.\n";
-	}
+    ouvrirSprite(Renau, "image/RenauMenu.png");
 	texturesPersonnages.push_back(Renau);
 
 	sf::Texture Cats;
-	if (!Cats.loadFromFile("image/Cats.png")) {
-		std::cout << "Erreur de chargement de la texture Cats.\n";
-	}
+    ouvrirSprite(Cats, "image/Cats.png");
 	texturesPersonnages.push_back(Cats);
 
 	int selection = 0; // le numéro du personnage
@@ -39,19 +35,13 @@ int main() {
 
      ///////////////////BACKGROUND DU MENU///////////////////
     sf::Texture MainMenu;
-    if (!MainMenu.loadFromFile("image/BGMainMenu.png")) {
-        std::cout << "Erreur de chargement de la texture du menu.\n";
-        return 1;
-    }
+    ouvrirSprite(MainMenu, "image/BGMainMenu.png");
     sf::RectangleShape Menu;
     Menu.setSize({ 1200.f, 800.f });
     Menu.setTexture(&MainMenu);
 
     sf::Texture SelectionPersonnage;
-    if (!SelectionPersonnage.loadFromFile("image/BGCharacterSelect.png")) {
-        std::cout << "Erreur de chargement de la texture du menu.\n";
-        return 1;
-    }
+    ouvrirSprite(SelectionPersonnage, "image/BGCharacterSelect.png");
     sf::RectangleShape MenuPersonnage;
     MenuPersonnage.setSize({ 1200.f, 800.f });
     MenuPersonnage.setTexture(&SelectionPersonnage);
@@ -61,60 +51,42 @@ int main() {
         std::cout << "Erreur de chargement de la texture du menu.\n";
         return 1;
     }
+    ouvrirSprite(ChargerPartie, "image/BGCharacterSelect.png");
     sf::RectangleShape MenuChargerPartie;
     MenuChargerPartie.setSize({ 1200.f, 800.f });
     MenuChargerPartie.setTexture(&ChargerPartie);
 
     sf::Texture BGControles;
-    if (!BGControles.loadFromFile("image/BGControle.png")) {
-        std::cout << "Erreur de chargement de la texture du menu.\n";
-        return 1;
-    }
+    ouvrirSprite(BGControles, "image/BGControle.png");
     sf::RectangleShape MenuControle;
     MenuControle.setSize({ 1200.f, 800.f });
     MenuControle.setTexture(&BGControles);
 
     sf::Texture BGhs;
-    if (!BGhs.loadFromFile("image/BGHighScore.png")) {
-        std::cout << "Erreur de chargement de la texture du menu.\n";
-        return 1;
-    }
+    ouvrirSprite(BGhs, "image/BGHighScore.png");
     sf::RectangleShape menuHS;
     menuHS.setSize({ 1200.f, 800.f });
     menuHS.setTexture(&BGhs);
 
     sf::Texture BGMap;
-    if (!BGMap.loadFromFile("image/BGMap.png")) {
-        std::cout << "Erreur de chargement de la texture du menu.\n";
-        return 1;
-    }
+    ouvrirSprite(BGMap, "image/BGMap.png");
     sf::RectangleShape menuMap;
     menuMap.setSize({ 1200.f, 800.f });
     menuMap.setTexture(&BGMap);
 
      //////////////////BOUTTONS DU MENU PRINCIPAL///////////
     sf::Texture menuJouer;
-    if (!menuJouer.loadFromFile("image/Jouer.png")) {
-        std::cout << "Erreur de chargement de la texture du menu.\n";
-        return 1;
-    }
-
+    ouvrirSprite(menuJouer, "image/Jouer.png");
     sf::RectangleShape mainJouer;
     mainJouer.setSize({ 237.f, 74.f });
     mainJouer.setPosition(10, 345);
     mainJouer.setTexture(&menuJouer);
 
     sf::Texture menuCharger;
-    if (!menuCharger.loadFromFile("image/Charger.png")) {
-        std::cout << "Erreur de chargement de la texture du menu.\n";
-        return 1;
-    }
+    ouvrirSprite(menuCharger, "image/Charger.png");
 
     sf::Texture menuChargerHover;
-    if (!menuChargerHover.loadFromFile("image/ChargerHover.png")) {
-        std::cout << "Erreur de chargement de la texture du menu.\n";
-        return 1;
-    }
+    ouvrirSprite(menuChargerHover, "image/ChargerHover.png");
 
     sf::RectangleShape mainCharger;
     mainCharger.setSize({ 331.f, 75.f });
@@ -122,16 +94,10 @@ int main() {
     mainCharger.setTexture(&menuCharger);
 
     sf::Texture menuControl;
-    if (!menuControl.loadFromFile("image/Controles.png")) {
-        std::cout << "Erreur de chargement de la texture du menu.\n";
-        return 1;
-    }
+    ouvrirSprite(menuControl, "image/Controles.png");
 
     sf::Texture menuControlHover;
-    if (!menuControlHover.loadFromFile("image/ControlesHover.png")) {
-        std::cout << "Erreur de chargement de la texture du menu.\n";
-        return 1;
-    }
+    ouvrirSprite(menuControlHover, "image/ControlesHover.png");
 
     sf::RectangleShape mainControl;
     mainControl.setSize({ 407.f, 72.f });
@@ -139,15 +105,10 @@ int main() {
     mainControl.setTexture(&menuControl);
 
     sf::Texture menuBoutonHS;
-    if (!menuBoutonHS.loadFromFile("image/HighScores.png")) {
-        std::cout << "Erreur de chargement de la texture du menu.\n";
-        return 1;
-    }
+    ouvrirSprite(menuBoutonHS, "image/HighScores.png");
+
     sf::Texture menuHSHover;
-    if (!menuHSHover.loadFromFile("image/HighScoresHover.png")) {
-        std::cout << "Erreur de chargement de la texture du menu.\n";
-        return 1;
-    }
+    ouvrirSprite(menuHSHover, "image/HighScoresHover.png");
 
     sf::RectangleShape mainHS;
     mainHS.setSize({ 475.f, 76.f });
@@ -161,33 +122,22 @@ int main() {
     optionMenuJouer.setTexture(&menuJouer);
 
     sf::Texture menuJouerHover;
-    if (!menuJouerHover.loadFromFile("image/JouerHover.png")) {
-        std::cout << "Erreur de chargement de la texture du menu.\n";
-        return 1;
-    }
+    ouvrirSprite(menuJouerHover, "image/JouerHover.png");
+
     sf::Texture menuRetour;
-    if (!menuRetour.loadFromFile("image/Retour.png")) {
-        std::cout << "Erreur de chargement de la texture du menu.\n";
-        return 1;
-    }
+    ouvrirSprite(menuRetour, "image/Retour.png");
 
     sf::RectangleShape optionMenuRetour({ 284.f, 74.f });
     optionMenuRetour.setTexture(&menuRetour);
     optionMenuRetour.setPosition(10, 10);
 
     sf::Texture menuRetourHover;
-    if (!menuRetourHover.loadFromFile("image/RetourHover.png")) {
-        std::cout << "Erreur de chargement de la texture du menu.\n";
-        return 1;
-    }
+    ouvrirSprite(menuRetourHover, "image/RetourHover.png");
 
     ///////////////////// FLECHE PERSONNAGE /////////////////////////
 
     sf::Texture flecheGauche;
-    if (!flecheGauche.loadFromFile("image/FlecheGauche.png")) {
-        std::cout << "Erreur de chargement de la texture du menu.\n";
-        return 1;
-    }
+    ouvrirSprite(flecheGauche, "image/FlecheGauche.png");
 
     sf::Texture flecheDroite;
     if (!flecheDroite.loadFromFile("image/FlecheDroite.png")) {
