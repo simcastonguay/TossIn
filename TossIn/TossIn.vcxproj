@@ -184,6 +184,7 @@
     <Text Include="updateNiveau.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Media Include="deplacement.wav" />
     <Media Include="menu.wav" />
     <Media Include="placing.wav" />
     <Media Include="popPerso&amp;deplacement.wav" />

@@ -167,5 +167,8 @@
     <Media Include="menu.wav">
       <Filter>Fichiers de ressources</Filter>
     </Media>
+    <Media Include="deplacement.wav">
+      <Filter>Fichiers de ressources</Filter>
+    </Media>
   </ItemGroup>
 </Project>

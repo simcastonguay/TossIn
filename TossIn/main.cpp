@@ -53,7 +53,7 @@ int main() {
     musicMenu.play();
 
     sf::SoundBuffer deplacement;
-    deplacement.loadFromFile("popPerso&deplacement.wav");
+    deplacement.loadFromFile("deplacement.wav");
     sf::Sound cliqueDeplacement;
     cliqueDeplacement.setBuffer(deplacement);
 
@@ -820,8 +820,21 @@ int main() {
             bonhomme.setFillColor(Color::White);
 
             Texture textureBonhomme;
-            ouvrirSprite(textureBonhomme, "image/renauTileSheet.png");
             IntRect rectBonhomme(0, 0, 100, 100);
+            if (selection == 0) {
+                ouvrirSprite(textureBonhomme, "image/renauTileSheet.png");
+               
+            }
+            else if (selection == 1)
+            {
+                ouvrirSprite(textureBonhomme, "image/GenevieveTileSheet.png");
+                
+            }
+            else if (selection == 2)
+            {
+                ouvrirSprite(textureBonhomme, "image/JosianneTileSheet.png");
+               
+            }
 
             //TEXTURE DES MURS//
             Texture textureMure;
@@ -921,6 +934,7 @@ int main() {
                     ofstream updateNiveau;
                     updateFichier(updateNiveau, indexNiveau, "updateNiveau.txt");
                     loadNiveau = false;
+                    
                     window.close();
                     
                 }

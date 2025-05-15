@@ -255,6 +255,8 @@ void getEvent(sf::RenderWindow &window, sf::Event event, int& dir, bool& loadNiv
 
 			case Keyboard::R:
 				//RESTART NIVEAU
+				window.close();
+				window.display();
 				break;
 
 			default:
