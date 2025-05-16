@@ -294,7 +294,7 @@ sf::Vector2f getFuturBoxPosition(sf::Vector2f futureBoxPosition, int dir)
 }
 
 
-std::ifstream openFichierHighScore(int highScore[5], int& indexNiveau, int& compteur)
+std::ifstream openFichierHighScore(int highScore[6], int& indexNiveauChoisi, int& compteur)
 {
 	string nomHighScoreLevel[5]{
 		"highScoreLevel1.txt",
@@ -304,7 +304,7 @@ std::ifstream openFichierHighScore(int highScore[5], int& indexNiveau, int& comp
 		"highScoreLevel5.txt"
 	};
 
-	ifstream fichierHighScore(nomHighScoreLevel[indexNiveau]);
+	ifstream fichierHighScore(nomHighScoreLevel[indexNiveauChoisi]);
 
 	if (!fichierHighScore)
 	{
@@ -446,7 +446,7 @@ void updateFichier(std::ofstream& updateNiveau, int &indexNiveau, std::string no
 
 }
 
-void updateHighScore(std::ofstream& fichierScoreWrite, int highScore[6], int indexNiveau)
+void updateHighScore(std::ofstream& fichierScoreWrite, int highScore[6], int &indexNiveauChoisi)
 {
 	string nomHighScoreLevel[5]{
 		"highScoreLevel1.txt",
@@ -456,7 +456,7 @@ void updateHighScore(std::ofstream& fichierScoreWrite, int highScore[6], int ind
 		"highScoreLevel5.txt"
 	};
 
-	fichierScoreWrite.open(nomHighScoreLevel[indexNiveau]);
+	fichierScoreWrite.open(nomHighScoreLevel[indexNiveauChoisi]);
 	if (!fichierScoreWrite)
 	{
 		cout << "Le fichier n'a pas pu ouvrir!" << endl;

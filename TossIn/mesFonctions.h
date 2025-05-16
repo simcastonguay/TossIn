@@ -22,7 +22,7 @@ void getEvent(int &compteur, sf::RenderWindow &window, sf::Event event, int& dir
 
 sf::Vector2f getFuturBoxPosition(sf::Vector2f futureBoxPosition, int dir);
 
-std::ifstream openFichierHighScore(int highScore[6], int& indexNiveau, int&compteur);
+std::ifstream openFichierHighScore(int highScore[6], int& indexNiveauChoisi, int&compteur);
 
 void trierHighScore(int highScore[6]);
 
@@ -40,4 +40,4 @@ void drawBonhomme(sf::RectangleShape& bonhomme, sf::RenderWindow& window, sf::Te
 
 void updateFichier(std::ofstream& updateNiveau, int &indexNiveau, std::string nom, int &indexNiveauChoisi);
 
-void updateHighScore(std::ofstream& fichierScoreWrite, int highScore[6], int indexNiveau);
+void updateHighScore(std::ofstream& fichierScoreWrite, int highScore[6], int &indexNiveauChoisi);

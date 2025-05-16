@@ -842,14 +842,15 @@ void Game::play()
                 {
                     ifstream fichierScore;
                     int highScore[6];
-                    fichierScore = openFichierHighScore(highScore, indexNiveau, compteur);
+                    fichierScore = openFichierHighScore(highScore, indexNiveauChoisi, compteur);
                     fichierScore.close();
                     trierHighScore(highScore);
                     ofstream fichierScoreWrite;
-                    updateHighScore(fichierScoreWrite, highScore, indexNiveau);
+                    updateHighScore(fichierScoreWrite, highScore, indexNiveauChoisi);
 
                     ofstream updateNiveau;
                     updateFichier(updateNiveau, indexNiveauChoisi, "updateNiveau.txt",indexNiveau);
+                    indexNiveau++;
                     loadNiveau = true;
                     cout << compteur;
 
