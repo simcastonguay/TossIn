@@ -831,8 +831,14 @@ void Game::play()
 
                 if (Niveaureussi(boxes, boiteCheck))
                 {
-                    openFichierHighScore(indexNiveau, compteur);
-                    
+                    ifstream fichierScore;
+                    int highScore[6];
+                    fichierScore = openFichierHighScore(highScore, indexNiveau, compteur);
+                    fichierScore.close();
+                    trierHighScore(highScore);
+                    ofstream fichierScoreWrite;
+                    updateHighScore(fichierScoreWrite, highScore, indexNiveau);
+
                     ofstream updateNiveau;
                     updateFichier(updateNiveau, indexNiveau, "updateNiveau.txt");
                     loadNiveau = false;

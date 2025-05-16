@@ -293,7 +293,8 @@ sf::Vector2f getFuturBoxPosition(sf::Vector2f futureBoxPosition, int dir)
 	return futureBoxPosition;
 }
 
-std::ofstream openFichierHighScore(int& indexNiveau, int&compteur)
+
+std::ifstream openFichierHighScore(int highScore[5], int& indexNiveau, int& compteur)
 {
 	string nomHighScoreLevel[5]{
 		"highScoreLevel1.txt",
@@ -303,15 +304,34 @@ std::ofstream openFichierHighScore(int& indexNiveau, int&compteur)
 		"highScoreLevel5.txt"
 	};
 
-	ofstream fichierHighScore(nomHighScoreLevel[indexNiveau]);
+	ifstream fichierHighScore(nomHighScoreLevel[indexNiveau]);
 
 	if (!fichierHighScore)
 	{
 		cout << "Le fichier n'a pas pu ouvrir!" << endl;
 	}
-	fichierHighScore << compteur;
+
+	for (int i = 0; i < 5; i++)
+	{
+		fichierHighScore >> highScore[i];
+	}
+
+	highScore[5] = compteur;
 
 	return fichierHighScore;
+}
+
+void trierHighScore(int highScore[6])
+{
+	for (int i = 0; i < 5; i++)
+	{
+		for (int j = i+1; j < 6; j++)
+		{
+			if (highScore[i] > highScore[j]) {
+				swap(highScore[i], highScore[j]);
+			}
+		}
+	}
 }
 
 std::ifstream openFichierLevel(int& indexNiveau)
@@ -416,5 +436,29 @@ void updateFichier(std::ofstream& updateNiveau, int &indexNiveau, std::string no
 	indexNiveau++;
 	updateNiveau << indexNiveau;
 	updateNiveau.close();
+}
+
+void updateHighScore(std::ofstream& fichierScoreWrite, int highScore[6], int indexNiveau)
+{
+	string nomHighScoreLevel[5]{
+		"highScoreLevel1.txt",
+		"highScoreLevel2.txt",
+		"highScoreLevel3.txt",
+		"highScoreLevel4.txt",
+		"highScoreLevel5.txt"
+	};
+
+	fichierScoreWrite.open(nomHighScoreLevel[indexNiveau]);
+	if (!fichierScoreWrite)
+	{
+		cout << "Le fichier n'a pas pu ouvrir!" << endl;
+		exit(1);
+	}
+
+	for (int i = 0; i < 5; i++)
+	{
+		fichierScoreWrite << highScore[i] << endl;
+	}
+	fichierScoreWrite.close();
 }
 
