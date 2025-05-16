@@ -197,7 +197,7 @@ void Game::play()
     ifstream index;
     OpenFichier(index, indexNiveau, "updateNiveau.txt");
 
-    
+    bool niveauChoisi = false;
 
 
     while (windowMenu.isOpen())
@@ -435,7 +435,7 @@ void Game::play()
                                                     indexNiveauChoisi = 0;
                                                     fichier = openFichierLevel(indexNiveauChoisi);
                                                     loadNiveau = true;
-
+                                                    niveauChoisi = true;
                                                 }
                                             }
                                             else if (optionBoutonMap2.getGlobalBounds().contains(optionsBoutonMap)) //NIVEAU 2
@@ -453,6 +453,7 @@ void Game::play()
                                                     indexNiveauChoisi = 1;
                                                     fichier = openFichierLevel(indexNiveauChoisi);
                                                     loadNiveau = true;
+                                                    niveauChoisi = true;
                                                 }
                                             }
                                             else if (optionBoutonMap3.getGlobalBounds().contains(optionsBoutonMap)) //NIVEAU 3
@@ -473,6 +474,7 @@ void Game::play()
                                                     indexNiveauChoisi = 2;
                                                     fichier = openFichierLevel(indexNiveauChoisi);
                                                     loadNiveau = true;
+                                                    niveauChoisi = true;
 
                                                 }
                                             }
@@ -494,6 +496,7 @@ void Game::play()
                                                     indexNiveauChoisi = 3;
                                                     fichier = openFichierLevel(indexNiveauChoisi);
                                                     loadNiveau = true;
+                                                    niveauChoisi = true;
 
                                                 }
                                             }
@@ -515,6 +518,7 @@ void Game::play()
                                                     indexNiveauChoisi = 4;
                                                     fichier = openFichierLevel(indexNiveauChoisi);
                                                     loadNiveau = true;
+                                                    niveauChoisi = true;
                                                 }
                                             }
                                             else if (optionMenuRetour.getGlobalBounds().contains(optionsRetourMap))
@@ -850,7 +854,20 @@ void Game::play()
 
                     ofstream updateNiveau;
                     updateFichier(updateNiveau, indexNiveauChoisi, "updateNiveau.txt",indexNiveau);
-                    indexNiveau++;
+
+                    if (niveauChoisi==true && indexNiveau> indexNiveauChoisi)
+                    {
+                        indexNiveauChoisi++;
+                    }
+                    else if (indexNiveauChoisi == indexNiveau)
+                    {
+                        indexNiveau++;
+                        indexNiveauChoisi++;
+                    }
+                    else {
+                        indexNiveau++;
+                    }
+
                     loadNiveau = true;
                     cout << compteur;
 
