@@ -216,7 +216,7 @@ void loadTextureMap(std::ifstream& fichier, char c, std::vector<int>& level, con
 
 }
 
-void getEvent(sf::RenderWindow &window, sf::Event event, int& dir, bool& loadNiveau, sf::Sound &cliqueDeplacement)
+void getEvent(int &compteur, sf::RenderWindow &window, sf::Event event, int& dir, bool& loadNiveau, sf::Sound &cliqueDeplacement)
 {
 
 	while (window.pollEvent(event))
@@ -236,21 +236,25 @@ void getEvent(sf::RenderWindow &window, sf::Event event, int& dir, bool& loadNiv
 			case Keyboard::Up:
 				cliqueDeplacement.play();
 				dir = 1;
+				compteur++;
 				break;
 
 			case Keyboard::Right:
 				cliqueDeplacement.play();
 				dir = 3;
+				compteur++;
 				break;
 
 			case Keyboard::Down:
 				cliqueDeplacement.play();
 				dir = 2;
+				compteur++;
 				break;
 
 			case Keyboard::Left:
 				cliqueDeplacement.play();
 				dir = 4;
+				compteur++;
 				break;
 
 			case Keyboard::R:
@@ -287,6 +291,27 @@ sf::Vector2f getFuturBoxPosition(sf::Vector2f futureBoxPosition, int dir)
 	}
 
 	return futureBoxPosition;
+}
+
+std::ofstream openFichierHighScore(int& indexNiveau, int&compteur)
+{
+	string nomHighScoreLevel[5]{
+		"highScoreLevel1.txt",
+		"highScoreLevel2.txt",
+		"highScoreLevel3.txt",
+		"highScoreLevel4.txt",
+		"highScoreLevel5.txt"
+	};
+
+	ofstream fichierHighScore(nomHighScoreLevel[indexNiveau]);
+
+	if (!fichierHighScore)
+	{
+		cout << "Le fichier n'a pas pu ouvrir!" << endl;
+	}
+	fichierHighScore << compteur;
+
+	return fichierHighScore;
 }
 
 std::ifstream openFichierLevel(int& indexNiveau)

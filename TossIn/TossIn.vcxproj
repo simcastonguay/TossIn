@@ -178,6 +178,11 @@
     <Image Include="image\tileMap.png" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="highScoreLevel1.txt" />
+    <Text Include="highScoreLevel2.txt" />
+    <Text Include="highScoreLevel3.txt" />
+    <Text Include="highScoreLevel4.txt" />
+    <Text Include="highScoreLevel5.txt" />
     <Text Include="level1.txt" />
     <Text Include="level2.txt" />
     <Text Include="level3.txt" />

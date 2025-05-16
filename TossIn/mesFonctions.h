@@ -18,9 +18,11 @@ int collisionTroue(sf::Vector2f prochainePosition, const std::vector<int>& level
 
 void loadTextureMap(std::ifstream& fichier, char c, std::vector<int>& level, const int totalBlock, const int largeurBlock, const int sizeBlock, sf::RectangleShape &bonhomme, sf::Texture& textureBox, sf::IntRect bCheck, std::vector<sf::RectangleShape> &boxes, std::vector<sf::RectangleShape> &boiteCheck, std::vector<sf::RectangleShape> &troueV, int count);
 
-void getEvent(sf::RenderWindow &window, sf::Event event, int& dir, bool& loadNiveau, sf::Sound& cliqueDeplacement);
+void getEvent(int &compteur, sf::RenderWindow &window, sf::Event event, int& dir, bool& loadNiveau, sf::Sound& cliqueDeplacement);
 
 sf::Vector2f getFuturBoxPosition(sf::Vector2f futureBoxPosition, int dir);
+
+std::ofstream openFichierHighScore(int& indexNiveau, int &compteur);
 
 std::ifstream openFichierLevel(int& indexNiveau);
 

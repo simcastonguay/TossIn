@@ -24,6 +24,9 @@
     <ClCompile Include="mesFonctions.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -33,6 +36,9 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="mesFonctions.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
@@ -124,16 +130,16 @@
     <Image Include="image\BoutonNonComplete4.png">
       <Filter>Fichiers de ressources</Filter>
     </Image>
-    <Image Include="D:\TossIn-master\TossIn-master\TossIn\image\GenevieveMenu.png">
+    <Image Include="image\GenevieveMenu.png">
       <Filter>Fichiers de ressources</Filter>
     </Image>
-    <Image Include="D:\TossIn-master\TossIn-master\TossIn\image\GenevieveTileSheet.png">
+    <Image Include="image\GenevieveTileSheet.png">
       <Filter>Fichiers de ressources</Filter>
     </Image>
-    <Image Include="D:\TossIn-master\TossIn-master\TossIn\image\JosianneMenu.png">
+    <Image Include="image\JosianneMenu.png">
       <Filter>Fichiers de ressources</Filter>
     </Image>
-    <Image Include="D:\TossIn-master\TossIn-master\TossIn\image\JosianneTileSheet.png">
+    <Image Include="image\JosianneTileSheet.png">
       <Filter>Fichiers de ressources</Filter>
     </Image>
   </ItemGroup>
@@ -156,6 +162,21 @@
     <Text Include="level5.txt">
       <Filter>Fichiers de ressources</Filter>
     </Text>
+    <Text Include="highScoreLevel1.txt">
+      <Filter>Fichiers de ressources</Filter>
+    </Text>
+    <Text Include="highScoreLevel2.txt">
+      <Filter>Fichiers de ressources</Filter>
+    </Text>
+    <Text Include="highScoreLevel3.txt">
+      <Filter>Fichiers de ressources</Filter>
+    </Text>
+    <Text Include="highScoreLevel4.txt">
+      <Filter>Fichiers de ressources</Filter>
+    </Text>
+    <Text Include="highScoreLevel5.txt">
+      <Filter>Fichiers de ressources</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <Media Include="popPerso&amp;deplacement.wav">
@@ -168,6 +189,9 @@
       <Filter>Fichiers de ressources</Filter>
     </Media>
     <Media Include="deplacement.wav">
+      <Filter>Fichiers de ressources</Filter>
+    </Media>
+    <Media Include="pas.wav">
       <Filter>Fichiers de ressources</Filter>
     </Media>
   </ItemGroup>

@@ -792,12 +792,13 @@ void Game::play()
             mur.setTexture(&textureMure);
 
             int dir = 0;
+            int compteur = 0;
 
             while (window.isOpen()) {
 
                 Event event{};
 
-                getEvent(window, event, dir, loadNiveau, cliqueDeplacement);
+                getEvent(compteur, window, event, dir, loadNiveau, cliqueDeplacement);
 
                 Vector2f prochainePosition = bonhomme.getPosition();
 
@@ -837,9 +838,12 @@ void Game::play()
 
                 if (Niveaureussi(boxes, boiteCheck))
                 {
+                    openFichierHighScore(indexNiveau, compteur);
+                    
                     ofstream updateNiveau;
                     updateFichier(updateNiveau, indexNiveau, "updateNiveau.txt");
                     loadNiveau = false;
+                    cout << compteur;
 
                     window.close();
 
