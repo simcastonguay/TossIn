@@ -252,6 +252,15 @@ void getEvent(sf::RenderWindow &window, sf::Event event, int& dir, bool& loadNiv
 				cliqueDeplacement.play();
 				dir = 4;
 				break;
+
+			case Keyboard::R:
+				//RESTART NIVEAU
+				window.close();
+				window.display();
+				break;
+
+			default:
+				break;
 			}
 		}
 	}
