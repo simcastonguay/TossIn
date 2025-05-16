@@ -470,3 +470,19 @@ void updateHighScore(std::ofstream& fichierScoreWrite, int highScore[6], int &in
 	fichierScoreWrite.close();
 }
 
+void changerNiveau(bool niveauChoisi, int& indexNiveauChoisi, int& indexNiveau)
+{
+	if (niveauChoisi == true && indexNiveau > indexNiveauChoisi)
+	{
+		indexNiveauChoisi++;
+	}
+	else if (indexNiveauChoisi == indexNiveau)
+	{
+		indexNiveau++;
+		indexNiveauChoisi++;
+	}
+	else {
+		indexNiveau++;
+	}
+}
+

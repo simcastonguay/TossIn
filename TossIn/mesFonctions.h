@@ -41,3 +41,5 @@ void drawBonhomme(sf::RectangleShape& bonhomme, sf::RenderWindow& window, sf::Te
 void updateFichier(std::ofstream& updateNiveau, int &indexNiveau, std::string nom, int &indexNiveauChoisi);
 
 void updateHighScore(std::ofstream& fichierScoreWrite, int highScore[6], int &indexNiveauChoisi);
+
+void changerNiveau(bool niveauChoisi, int& indexNiveauChoisi, int& indexNiveau);

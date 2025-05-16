@@ -855,18 +855,7 @@ void Game::play()
                     ofstream updateNiveau;
                     updateFichier(updateNiveau, indexNiveauChoisi, "updateNiveau.txt",indexNiveau);
 
-                    if (niveauChoisi==true && indexNiveau> indexNiveauChoisi)
-                    {
-                        indexNiveauChoisi++;
-                    }
-                    else if (indexNiveauChoisi == indexNiveau)
-                    {
-                        indexNiveau++;
-                        indexNiveauChoisi++;
-                    }
-                    else {
-                        indexNiveau++;
-                    }
+                    changerNiveau(niveauChoisi, indexNiveauChoisi, indexNiveau);
 
                     loadNiveau = true;
                     cout << compteur;
