@@ -19,6 +19,8 @@ void Game::play()
 
     bool loadNiveau = false;
 
+    int indexNiveauChoisi = 0;
+
     /////////////////VECTEUR ET TEXTURE PERSONNAGES////////////////////
 
     vector<sf::Texture> texturesPersonnages;
@@ -426,12 +428,12 @@ void Game::play()
 
                                                 }
                                                 else if (indexNiveau > 0) {
-                                                    optionBoutonMap1.setTexture(&boutonCompleteHover);
+                                                    optionBoutonMap1.setTexture(&boutonComplete);
                                                 }
                                                 if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
                                                 {
-                                                    indexNiveau = 0;
-                                                    fichier = openFichierLevel(indexNiveau);
+                                                    indexNiveauChoisi = 0;
+                                                    fichier = openFichierLevel(indexNiveauChoisi);
                                                     loadNiveau = true;
 
                                                 }
@@ -443,13 +445,13 @@ void Game::play()
 
                                                 }
                                                 else if (indexNiveau > 1) {
-                                                    optionBoutonMap2.setTexture(&boutonCompleteHover);
+                                                    optionBoutonMap2.setTexture(&boutonComplete);
                                                 }
 
-                                                if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+                                                if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && indexNiveau >= 1)
                                                 {
-                                                    indexNiveau = 1;
-                                                    fichier = openFichierLevel(indexNiveau);
+                                                    indexNiveauChoisi = 1;
+                                                    fichier = openFichierLevel(indexNiveauChoisi);
                                                     loadNiveau = true;
                                                 }
                                             }
@@ -460,16 +462,16 @@ void Game::play()
 
                                                 }
                                                 else if (indexNiveau > 2) {
-                                                    optionBoutonMap3.setTexture(&boutonCompleteHover);
+                                                    optionBoutonMap3.setTexture(&boutonComplete);
                                                 }
                                                 else if (indexNiveau < 2) {
                                                     optionBoutonMap3.setTexture(&boutonMapHover);
                                                 }
 
-                                                if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+                                                if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && indexNiveau >= 2)
                                                 {
-                                                    indexNiveau = 2;
-                                                    fichier = openFichierLevel(indexNiveau);
+                                                    indexNiveauChoisi = 2;
+                                                    fichier = openFichierLevel(indexNiveauChoisi);
                                                     loadNiveau = true;
 
                                                 }
@@ -481,16 +483,16 @@ void Game::play()
 
                                                 }
                                                 else if (indexNiveau > 3) {
-                                                    optionBoutonMap4.setTexture(&boutonCompleteHover);
+                                                    optionBoutonMap4.setTexture(&boutonComplete);
                                                 }
                                                 else if (indexNiveau < 3) {
                                                     optionBoutonMap4.setTexture(&boutonMapHover);
                                                 }
 
-                                                if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+                                                if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && indexNiveau>= 3)
                                                 {
-                                                    indexNiveau = 3;
-                                                    fichier = openFichierLevel(indexNiveau);
+                                                    indexNiveauChoisi = 3;
+                                                    fichier = openFichierLevel(indexNiveauChoisi);
                                                     loadNiveau = true;
 
                                                 }
@@ -502,16 +504,16 @@ void Game::play()
 
                                                 }
                                                 else if (indexNiveau > 4) {
-                                                    optionBoutonMap5.setTexture(&boutonCompleteHover);
+                                                    optionBoutonMap5.setTexture(&boutonComplete);
                                                 }
                                                 else if (indexNiveau < 4) {
                                                     optionBoutonMap5.setTexture(&boutonMapHover);
                                                 }
 
-                                                if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+                                                if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && indexNiveau >= 4)
                                                 {
-                                                    indexNiveau = 4;
-                                                    fichier = openFichierLevel(indexNiveau);
+                                                    indexNiveauChoisi = 4;
+                                                    fichier = openFichierLevel(indexNiveauChoisi);
                                                     loadNiveau = true;
                                                 }
                                             }
@@ -523,6 +525,13 @@ void Game::play()
                                                 {
                                                     windowMap.close();
                                                 }
+                                            }
+                                            if (indexNiveau == 5) {
+                                                optionBoutonMap1.setTexture(&boutonComplete);
+                                                optionBoutonMap2.setTexture(&boutonComplete);
+                                                optionBoutonMap3.setTexture(&boutonComplete);
+                                                optionBoutonMap4.setTexture(&boutonComplete);
+                                                optionBoutonMap5.setTexture(&boutonComplete);
                                             }
                                             windowMap.clear();
                                             windowMap.draw(menuMap);
@@ -706,7 +715,7 @@ void Game::play()
         windowMenu.display();
 
         ////////////////////DÉBUT DU JEU///////////////////
-        if (loadNiveau == true) {
+        while (loadNiveau == true) {
             musicMenu.stop();
             int width = 1600, height = 1000;
             RenderWindow window(VideoMode(width, height), "Toss in!");
@@ -757,7 +766,7 @@ void Game::play()
 
             //get le niveau dans updateNiveau.txt
 
-            fichier = openFichierLevel(indexNiveau);
+            fichier = openFichierLevel(indexNiveauChoisi);
 
 
             vector<RectangleShape> boxes;
@@ -840,8 +849,8 @@ void Game::play()
                     updateHighScore(fichierScoreWrite, highScore, indexNiveau);
 
                     ofstream updateNiveau;
-                    updateFichier(updateNiveau, indexNiveau, "updateNiveau.txt");
-                    loadNiveau = false;
+                    updateFichier(updateNiveau, indexNiveauChoisi, "updateNiveau.txt",indexNiveau);
+                    loadNiveau = true;
                     cout << compteur;
 
                     window.close();

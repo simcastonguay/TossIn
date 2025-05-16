@@ -38,6 +38,6 @@ void deplacementBonhomme(bool& deplacementAutorise, bool& aPousseUneBoite, sf::V
 
 void drawBonhomme(sf::RectangleShape& bonhomme, sf::RenderWindow& window, sf::Texture& textureBonhomme, sf::IntRect& rectBonhomme);
 
-void updateFichier(std::ofstream& updateNiveau, int &indexNiveau, std::string nom);
+void updateFichier(std::ofstream& updateNiveau, int &indexNiveau, std::string nom, int &indexNiveauChoisi);
 
 void updateHighScore(std::ofstream& fichierScoreWrite, int highScore[6], int indexNiveau);

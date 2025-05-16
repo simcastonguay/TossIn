@@ -424,7 +424,7 @@ void drawBonhomme(sf::RectangleShape& bonhomme, sf::RenderWindow& window, sf::Te
 
 }
 
-void updateFichier(std::ofstream& updateNiveau, int &indexNiveau, std::string nom)
+void updateFichier(std::ofstream& updateNiveau, int &indexNiveau, std::string nom, int &indexNiveauChoisi)
 {
 	updateNiveau.open(nom);
 
@@ -433,9 +433,17 @@ void updateFichier(std::ofstream& updateNiveau, int &indexNiveau, std::string no
 		exit(1);
 	}
 
-	indexNiveau++;
-	updateNiveau << indexNiveau;
-	updateNiveau.close();
+	if (indexNiveau >= indexNiveauChoisi)
+	{
+		indexNiveau++;
+		updateNiveau << indexNiveau;
+		updateNiveau.close();
+	}
+	else
+	{
+		updateNiveau.close();
+	}
+
 }
 
 void updateHighScore(std::ofstream& fichierScoreWrite, int highScore[6], int indexNiveau)
