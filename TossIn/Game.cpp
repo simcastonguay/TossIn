@@ -53,8 +53,13 @@ void Game::play()
     musicMenu.setLoop(true);
     musicMenu.play();
 
+    sf::SoundBuffer changePerso;
+    changePerso.loadFromFile("deplacement.wav");
+    sf::Sound cliqueChangement;
+    cliqueChangement.setBuffer(changePerso);
+
     sf::SoundBuffer deplacement;
-    deplacement.loadFromFile("deplacement.wav");
+    deplacement.loadFromFile("pas.wav");
     sf::Sound cliqueDeplacement;
     cliqueDeplacement.setBuffer(deplacement);
 
@@ -272,7 +277,7 @@ void Game::play()
                             if (characterEvent.type == Event::KeyPressed) {
 
                                 if (characterEvent.key.code == sf::Keyboard::D) {
-                                    cliqueDeplacement.play();
+                                    cliqueChangement.play();
 
                                     selection = (selection + 1) % texturesPersonnages.size(); //peut pas faire selection++ sinon fait pas de boucle
                                     personnage.setTexture(texturesPersonnages[selection]);
@@ -282,7 +287,7 @@ void Game::play()
                             if (characterEvent.type == Event::KeyPressed) {
 
                                 if (characterEvent.key.code == sf::Keyboard::A) {
-                                    cliqueDeplacement.play();
+                                    cliqueChangement.play();
 
                                     selection--;
                                     if (selection < 0)
