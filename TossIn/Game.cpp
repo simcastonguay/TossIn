@@ -195,19 +195,12 @@ void Game::play()
     ifstream index;
     OpenFichier(index, indexNiveau, "updateNiveau.txt");
 
-    ////////////////////////COMPTEUR HIGH-SCORE////////////////////////////
-
-    ifstream meilleursScores;
-    //vector<sf::> compteur;
+    
 
 
     while (windowMenu.isOpen())
     {
-
-
-        // on inspecte tous les évènements de la fenêtre qui ont été émis depuis la précédente     itération
         Event event;
-
 
         while (windowMenu.pollEvent(event))
         {
@@ -219,7 +212,6 @@ void Game::play()
             mainControl.setTexture(&menuControl);
             mainHS.setTexture(&menuBoutonHS);
 
-            // évènement "fermeture demandée" : on ferme la fenêtre
             if (event.type == Event::Closed)
             {
                 windowMenu.close();
@@ -239,12 +231,11 @@ void Game::play()
 
                 mainJouer.setTexture(&menuJouerHover); // Hover   
 
+                //////////////////////MENU DE SÉLECTION DU PERSONNAGE////////////////////////////
+
                 if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && !loadNiveau)
                 {
-                    RenderWindow windowCharacter(VideoMode(1200, 800), "Sélection du personnage");
-
-
-
+                    RenderWindow windowCharacter(VideoMode(1200, 800), "Sélection du personnage"); 
 
                     while (windowCharacter.isOpen())
                     {
@@ -279,7 +270,7 @@ void Game::play()
                                 if (characterEvent.key.code == sf::Keyboard::D) {
                                     cliqueChangement.play();
 
-                                    selection = (selection + 1) % texturesPersonnages.size(); //peut pas faire selection++ sinon fait pas de boucle
+                                    selection = (selection + 1) % texturesPersonnages.size(); //PERMET DE FAIRE BOUCLER
                                     personnage.setTexture(texturesPersonnages[selection]);
 
                                 }
@@ -292,7 +283,7 @@ void Game::play()
                                     selection--;
                                     if (selection < 0)
                                     {
-                                        selection = texturesPersonnages.size() - 1; //vas au dernier (ici le 3e)
+                                        selection = texturesPersonnages.size() - 1; //VA U DERNIER PERSONNAGE SI PLUS PETIT QUE 0
                                     }
                                     personnage.setTexture(texturesPersonnages[selection]);
 
@@ -303,10 +294,14 @@ void Game::play()
 
                                 optionMenuJouer.setTexture(&menuJouerHover);
 
+                                ////////////////////////MENU DE LA MAP DU MONDE POUR SÉLECTIONNER UN NIVEAU//////////
+
                                 if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
                                 {
                                     RenderWindow windowMap(VideoMode(1200, 800), "Sélection d'un niveau");
                                     windowCharacter.close();
+
+                                    ///////////////////TEXTURES DES BOUTONS////////////////////
 
                                     sf::RectangleShape optionMenuRetour({ 284.f, 74.f });
                                     optionMenuRetour.setTexture(&menuRetour);
@@ -330,6 +325,7 @@ void Game::play()
                                     sf::Texture boutonActuelHover;
                                     ouvrirSprite(boutonActuelHover, "image/BoutonActuelHover.png");
 
+                                    ///////////////////////PLACEMENT DES BOUTONS//////////////////
 
                                     sf::RectangleShape optionBoutonMap1({ 136.f, 89.f });
                                     optionBoutonMap1.setPosition(111, 351);
@@ -423,7 +419,7 @@ void Game::play()
                                                     break;
                                                 }
                                             }
-                                            else if (optionBoutonMap1.getGlobalBounds().contains(optionsBoutonMap))
+                                            else if (optionBoutonMap1.getGlobalBounds().contains(optionsBoutonMap)) //NIVEAU 1
                                             {
                                                 if (indexNiveau == 0) {
                                                     optionBoutonMap1.setTexture(&boutonActuelHover);
@@ -440,7 +436,7 @@ void Game::play()
 
                                                 }
                                             }
-                                            else if (optionBoutonMap2.getGlobalBounds().contains(optionsBoutonMap))
+                                            else if (optionBoutonMap2.getGlobalBounds().contains(optionsBoutonMap)) //NIVEAU 2
                                             {
                                                 if (indexNiveau == 1) {
                                                     optionBoutonMap2.setTexture(&boutonActuelHover);
@@ -457,7 +453,7 @@ void Game::play()
                                                     loadNiveau = true;
                                                 }
                                             }
-                                            else if (optionBoutonMap3.getGlobalBounds().contains(optionsBoutonMap))
+                                            else if (optionBoutonMap3.getGlobalBounds().contains(optionsBoutonMap)) //NIVEAU 3
                                             {
                                                 if (indexNiveau == 2) {
                                                     optionBoutonMap3.setTexture(&boutonActuelHover);
@@ -478,7 +474,7 @@ void Game::play()
 
                                                 }
                                             }
-                                            else if (optionBoutonMap4.getGlobalBounds().contains(optionsBoutonMap))
+                                            else if (optionBoutonMap4.getGlobalBounds().contains(optionsBoutonMap)) //NIVEAU 4
                                             {
                                                 if (indexNiveau == 3) {
                                                     optionBoutonMap4.setTexture(&boutonActuelHover);
@@ -499,7 +495,7 @@ void Game::play()
 
                                                 }
                                             }
-                                            else if (optionBoutonMap5.getGlobalBounds().contains(optionsBoutonMap))
+                                            else if (optionBoutonMap5.getGlobalBounds().contains(optionsBoutonMap)) //NIVEAU 5 - À MODIFIER
                                             {
                                                 if (indexNiveau == 4) {
                                                     optionBoutonMap5.setTexture(&boutonActuelHover);
@@ -570,7 +566,8 @@ void Game::play()
                 }
             }
 
-            /////////////////// FIN BOUTTON JOUER ///////////////////
+            /////////////////// FIN BOUTON JOUER ///////////////////
+            /////////////////// DÉBUT BOUTON CHARGER ///////////////////
             else if (mainCharger.getGlobalBounds().contains(optionsMenu))
             {
                 mainCharger.setTexture(&menuChargerHover);
@@ -581,7 +578,7 @@ void Game::play()
 
             }
             //////////////////FIN BOUTON CHARGER////////////////////
-
+            /////////////////// DÉBUT BOUTON CONTROLES ///////////////////
             else if (mainControl.getGlobalBounds().contains(optionsMenu))
             {
                 mainControl.setTexture(&menuControlHover);
@@ -640,6 +637,7 @@ void Game::play()
 
             }
             ///////////////////FIN BOUTON CONTROLE////////////////
+            /////////////////// DÉBUT BOUTON HIGH-SCORE ///////////////////
             else if (mainHS.getGlobalBounds().contains(optionsMenu))
             {
                 mainHS.setTexture(&menuHSHover);
@@ -707,6 +705,7 @@ void Game::play()
         windowMenu.draw(mainHS);
         windowMenu.display();
 
+        ////////////////////DÉBUT DU JEU///////////////////
         if (loadNiveau == true) {
             musicMenu.stop();
             int width = 1600, height = 1000;
@@ -719,7 +718,7 @@ void Game::play()
             fondEcran.setFillColor(Color::Black);
 
 
-            //TEXTURE BONHOMME
+            ///////////TEXTURE SPRITE SELON PERSONNAGE CHOISIT//////////////
             RectangleShape bonhomme;
             bonhomme.setPosition(200, 200);
             bonhomme.setSize(Vector2f(100, 100));
@@ -742,7 +741,7 @@ void Game::play()
 
             }
 
-            //TEXTURE DES MURS//
+            ////////TEXTURE DES MURS ET SOL////////////
             Texture textureMure;
             ouvrirSprite(textureMure, "image/tileMap.png");
 
@@ -754,21 +753,16 @@ void Game::play()
             const int totalBlock = largeurBlock * hauteurBlock;
             const int sizeBlock = 100;
 
-            //Vector maps
             vector<int> level;
 
-            //int indexNiveau = 0;
-
             //get le niveau dans updateNiveau.txt
-
-            //ifstream fichier;
 
             fichier = openFichierLevel(indexNiveau);
 
 
             vector<RectangleShape> boxes;
 
-            //Boite et initialisation
+            //////INITIALISATION ET CRÉATION DES BOITES///////
             std::vector<RectangleShape> boiteCheck;
             int countcheck = 0;
 
@@ -781,7 +775,6 @@ void Game::play()
             vector<RectangleShape> troueV;
 
             char c = '0';
-
             int count = 0;
 
 
