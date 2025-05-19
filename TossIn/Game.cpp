@@ -446,7 +446,7 @@ void Game::play()
 
                                                 }
                                                 else if (indexNiveau > 0) {
-                                                    optionBoutonMap1.setTexture(&boutonComplete);
+                                                    optionBoutonMap1.setTexture(&boutonCompleteHover);
                                                 }
                                                 if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
                                                 {
@@ -463,7 +463,7 @@ void Game::play()
 
                                                 }
                                                 else if (indexNiveau > 1) {
-                                                    optionBoutonMap2.setTexture(&boutonComplete);
+                                                    optionBoutonMap2.setTexture(&boutonCompleteHover);
                                                 }
 
                                                 if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && indexNiveau >= 1)
@@ -481,7 +481,7 @@ void Game::play()
 
                                                 }
                                                 else if (indexNiveau > 2 || indexNiveau > 3) {
-                                                    optionBoutonMap3.setTexture(&boutonComplete);
+                                                    optionBoutonMap3.setTexture(&boutonCompleteHover);
                                                 }
                                                 else if (indexNiveau < 2) {
                                                     optionBoutonMap3.setTexture(&boutonMapHover);
@@ -507,7 +507,7 @@ void Game::play()
 
                                                 }
                                                 else if (indexNiveau > 3 || indexNiveau > 2) {
-                                                    optionBoutonMap4.setTexture(&boutonComplete);
+                                                    optionBoutonMap4.setTexture(&boutonCompleteHover);
                                                 }
                                                 else if (indexNiveau < 3 || indexNiveau > 2) {
                                                     optionBoutonMap4.setTexture(&boutonMapHover);
@@ -529,7 +529,7 @@ void Game::play()
 
                                                 }
                                                 else if (indexNiveau > 4) {
-                                                    optionBoutonMap5.setTexture(&boutonComplete);
+                                                    optionBoutonMap5.setTexture(&boutonCompleteHover);
                                                 }
                                                 else if (indexNiveau < 4) {
                                                     optionBoutonMap5.setTexture(&boutonMapHover);
