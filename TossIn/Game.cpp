@@ -397,7 +397,7 @@ void Game::play()
                                                 optionBoutonMap1.setTexture(&boutonComplete);
                                                 optionBoutonMap2.setTexture(&boutonComplete);
                                                 optionBoutonMap3.setTexture(&boutonActuel);
-                                                optionBoutonMap4.setTexture(&boutonActuel);
+                                                optionBoutonMap4.setTexture(&boutonMap);
                                                 optionBoutonMap5.setTexture(&boutonMap);
                                                 optionMenuRetour.setTexture(&menuRetour);
                                                 break;
@@ -405,7 +405,7 @@ void Game::play()
                                             case 3:
                                                 optionBoutonMap1.setTexture(&boutonComplete);
                                                 optionBoutonMap2.setTexture(&boutonComplete);
-                                                optionBoutonMap3.setTexture(&boutonActuel);
+                                                optionBoutonMap3.setTexture(&boutonComplete);
                                                 optionBoutonMap4.setTexture(&boutonActuel);
                                                 optionBoutonMap5.setTexture(&boutonMap);
                                                 optionMenuRetour.setTexture(&menuRetour);
@@ -476,11 +476,14 @@ void Game::play()
                                                     optionBoutonMap3.setTexture(&boutonActuelHover);
 
                                                 }
-                                                else if (indexNiveau > 2) {
+                                                else if (indexNiveau > 2 || indexNiveau > 3) {
                                                     optionBoutonMap3.setTexture(&boutonComplete);
                                                 }
                                                 else if (indexNiveau < 2) {
                                                     optionBoutonMap3.setTexture(&boutonMapHover);
+                                                }
+                                                else if (indexNiveau == 3) {
+                                                    optionBoutonMap3.setTexture(&boutonComplete);
                                                 }
 
                                                 if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && indexNiveau >= 2)
@@ -491,6 +494,7 @@ void Game::play()
                                                     niveauChoisi = true;
 
                                                 }
+
                                             }
                                             else if (optionBoutonMap4.getGlobalBounds().contains(optionsBoutonMap)) //NIVEAU 4
                                             {
@@ -498,10 +502,10 @@ void Game::play()
                                                     optionBoutonMap4.setTexture(&boutonActuelHover);
 
                                                 }
-                                                else if (indexNiveau > 3) {
+                                                else if (indexNiveau > 3 || indexNiveau > 2) {
                                                     optionBoutonMap4.setTexture(&boutonComplete);
                                                 }
-                                                else if (indexNiveau < 3) {
+                                                else if (indexNiveau < 3 || indexNiveau > 2) {
                                                     optionBoutonMap4.setTexture(&boutonMapHover);
                                                 }
 
