@@ -514,7 +514,7 @@ void Game::play()
 
                                                 }
                                             }
-                                            else if (optionBoutonMap5.getGlobalBounds().contains(optionsBoutonMap)) //NIVEAU 5 - À MODIFIER
+                                            else if (optionBoutonMap5.getGlobalBounds().contains(optionsBoutonMap)) //NIVEAU 5 
                                             {
                                                 if (indexNiveau == 4) {
                                                     optionBoutonMap5.setTexture(&boutonActuelHover);
