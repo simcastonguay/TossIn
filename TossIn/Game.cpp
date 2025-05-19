@@ -878,6 +878,12 @@ void Game::play()
                     ofstream fichierScoreWrite;
                     updateHighScore(fichierScoreWrite, highScore, indexNiveauChoisi);
 
+
+                    if (indexNiveau == 4) {
+                        window.close();
+                        break;
+                    }
+
                     ofstream updateNiveau;
                     updateFichier(updateNiveau, indexNiveauChoisi, "updateNiveau.txt",indexNiveau);
 
