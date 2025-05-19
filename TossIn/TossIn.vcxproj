@@ -197,6 +197,9 @@
     <Media Include="placing.wav" />
     <Media Include="popPerso&amp;deplacement.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="Team-401.ttf" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

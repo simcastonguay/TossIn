@@ -3,6 +3,7 @@
 #include <fstream>
 #include<SFML/Graphics.hpp>
 #include<SFML/Audio.hpp>
+#include <sstream>
 #include"mesFonctions.h"
 
 using namespace std;
@@ -483,6 +484,212 @@ void changerNiveau(bool niveauChoisi, int& indexNiveauChoisi, int& indexNiveau)
 	}
 	else {
 		indexNiveau++;
+	}
+}
+
+
+int lireHighScoreLvl1(int scoresLvl[], int maxScores)
+{
+	maxScores = 5;
+	ifstream fichier("highScoreLevel1.txt");
+	int i = 0;
+	if (fichier.is_open())
+	{
+		while (fichier >> scoresLvl[i] && i < maxScores)
+		{
+			i++;
+		}
+		fichier.close();
+	}
+	else
+	{
+		cout << "Erreur lors de l'ouverture du fichier\n";
+	}
+	return i; //Retourne les scores qui ont été lu
+}
+
+void afficherHS1(sf::RenderWindow& windowHS, const sf::Font& fontHS, int highScore[], int nbScores1)
+{
+	for (int i = 0; i < nbScores1; i++) {
+		sf::Text textHS;
+		textHS.setFont(fontHS);
+
+		std::ostringstream ss; // Besoin de la librairie ss pour "tranformer" les int en string dans le setString
+		ss <<  highScore[i] << endl;
+		textHS.setString(ss.str());
+
+		textHS.setCharacterSize(24);
+		textHS.setFillColor(sf::Color::Black);
+		textHS.setOutlineColor(Color::Cyan);
+		textHS.setOutlineThickness(2);
+		textHS.setPosition(80, 280 + i * 60); //Le *60 détermine l'espace entre les scores.
+
+		windowHS.draw(textHS);
+	}
+}
+
+int lireHighScoreLvl2(int scoresLvl[], int maxScores)
+{
+	maxScores = 5;
+	ifstream fichier("highScoreLevel2.txt");
+	int i = 0;
+	if (fichier.is_open())
+	{
+		while (fichier >> scoresLvl[i] && i < maxScores)
+		{
+			i++;
+		}
+		fichier.close();
+	}
+	else
+	{
+		cout << "Erreur lors de l'ouverture du fichier\n";
+	}
+	return i; //Retourne les scores qui ont été lu
+}
+
+void afficherHS2(sf::RenderWindow& windowHS, const sf::Font& fontHS, int highScore[], int nbScores2)
+{
+	for (int i = 0; i < nbScores2; i++)
+	{
+		sf::Text textHS;
+		textHS.setFont(fontHS);
+
+		std::ostringstream ss; // Besoin de la librairie ss pour "tranformer" les int en string dans le setString
+		ss << highScore[i] << endl;
+		textHS.setString(ss.str());
+
+		textHS.setCharacterSize(24);
+		textHS.setFillColor(sf::Color::Black);
+		textHS.setOutlineColor(Color::Cyan);
+		textHS.setOutlineThickness(2);
+		textHS.setPosition(315, 280 + i * 60); //Le *60 détermine l'espace entre les scores.
+
+		windowHS.draw(textHS);
+	}
+}
+
+int lireHighScoreLvl3(int scoresLvl[], int maxScores)
+{
+	maxScores = 5;
+	ifstream fichier("highScoreLevel3.txt");
+	int i = 0;
+	if (fichier.is_open())
+	{
+		while (fichier >> scoresLvl[i] && i < maxScores)
+		{
+			i++;
+		}
+		fichier.close();
+	}
+	else
+	{
+		cout << "Erreur lors de l'ouverture du fichier de score numéro 3\n";
+	}
+	return i; //Retourne les scores qui ont été lu
+}
+
+void afficherHS3(sf::RenderWindow& windowHS, const sf::Font& fontHS, int highScore[], int nbScores3)
+{
+	for (int i = 0; i < nbScores3; i++)
+	{
+		sf::Text textHS;
+		textHS.setFont(fontHS);
+
+		std::ostringstream ss; // Besoin de la librairie ss pour "tranformer" les int en string dans le setString
+		ss << highScore[i] << endl;
+		textHS.setString(ss.str());
+
+		textHS.setCharacterSize(24);
+		textHS.setFillColor(sf::Color::Black);
+		textHS.setOutlineColor(Color::Cyan);
+		textHS.setOutlineThickness(2);
+		textHS.setPosition(550, 280 + i * 60); //Le *60 détermine l'espace entre les scores.
+
+		windowHS.draw(textHS);
+	}
+}
+
+int lireHighScoreLvl4(int scoresLvl[], int maxScores)
+{
+	maxScores = 5;
+	ifstream fichier("highScoreLevel4.txt");
+	int i = 0;
+	if (fichier.is_open())
+	{
+		while (fichier >> scoresLvl[i] && i < maxScores)
+		{
+			i++;
+		}
+		fichier.close();
+	}
+	else
+	{
+		cout << "Erreur lors de l'ouverture du fichier numéro 4\n";
+	}
+	return i; //Retourne les scores qui ont été lu
+}
+
+void afficherHS4(sf::RenderWindow& windowHS, const sf::Font& fontHS, int highScore[], int nbScores4) 
+{
+	for (int i = 0; i < nbScores4; i++)
+	{
+		sf::Text textHS;
+		textHS.setFont(fontHS);
+
+		std::ostringstream ss; // Besoin de la librairie ss pour "tranformer" les int en string dans le setString
+		ss << highScore[i] << endl;
+		textHS.setString(ss.str());
+
+		textHS.setCharacterSize(24);
+		textHS.setFillColor(sf::Color::Black);
+		textHS.setOutlineColor(Color::Cyan);
+		textHS.setOutlineThickness(2);
+		textHS.setPosition(800, 280 + i * 60); //Le *60 détermine l'espace entre les scores.
+		
+
+		windowHS.draw(textHS);
+	}
+}
+
+int lireHighScoreLvl5(int scoresLvl[], int maxScores)
+{
+	maxScores = 5;
+	ifstream fichier("highScoreLevel5.txt");
+	int i = 0;
+	if (fichier.is_open())
+	{
+		while (fichier >> scoresLvl[i] && i < maxScores)
+		{
+			i++;
+		}
+		fichier.close();
+	}
+	else
+	{
+		cout << "Erreur lors de l'ouverture du fichier numéro 5\n";
+	}
+	return i; //Retourne les scores qui ont été lu
+}
+
+void afficherHS5(sf::RenderWindow& windowHS, const sf::Font& fontHS, int highScore[], int nbScores5)
+{
+	for (int i = 0; i < nbScores5; i++)
+	{
+		sf::Text textHS;
+		textHS.setFont(fontHS);
+
+		std::ostringstream ss; // Besoin de la librairie ss pour "tranformer" les int en string dans le setString
+		ss << highScore[i] << endl;
+		textHS.setString(ss.str());
+
+		textHS.setCharacterSize(24);
+		textHS.setFillColor(sf::Color::Black);
+		textHS.setOutlineColor(Color::Cyan);
+		textHS.setOutlineThickness(2);
+		textHS.setPosition(1030, 280 + i * 60); //Le *60 détermine l'espace entre les scores.
+
+		windowHS.draw(textHS);
 	}
 }
 

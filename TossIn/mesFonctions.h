@@ -43,3 +43,23 @@ void updateFichier(std::ofstream& updateNiveau, int &indexNiveau, std::string no
 void updateHighScore(std::ofstream& fichierScoreWrite, int highScore[6], int &indexNiveauChoisi);
 
 void changerNiveau(bool niveauChoisi, int& indexNiveauChoisi, int& indexNiveau);
+
+int lireHighScoreLvl1(int scoresLvl[], int maxScores);
+
+void afficherHS1(sf::RenderWindow& windowHS, const sf::Font& font, int highScore[], int nbScores1);
+
+int lireHighScoreLvl2(int scoresLvl[], int maxScores);
+
+void afficherHS2(sf::RenderWindow& windowHS, const sf::Font& font, int highScore[], int nbScores2);
+
+int lireHighScoreLvl3(int scoresLvl[], int maxScores);
+
+void afficherHS3(sf::RenderWindow& windowHS, const sf::Font& font, int highScore[], int nbScores3);
+
+int lireHighScoreLvl4(int scoresLvl[], int maxScores);
+
+void afficherHS4(sf::RenderWindow& windowHS, const sf::Font& font, int highScore[], int nbScores4);
+
+int lireHighScoreLvl5(int scoresLvl[], int maxScores);
+
+void afficherHS5(sf::RenderWindow& windowHS, const sf::Font& font, int highScore[], int nbScores5);

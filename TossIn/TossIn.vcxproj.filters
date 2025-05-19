@@ -195,4 +195,9 @@
       <Filter>Fichiers de ressources</Filter>
     </Media>
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="Team-401.ttf">
+      <Filter>Fichiers de ressources</Filter>
+    </Font>
+  </ItemGroup>
 </Project>

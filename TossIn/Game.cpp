@@ -21,6 +21,13 @@ void Game::play()
 
     int indexNiveauChoisi = 0;
 
+    int dir = 0;
+    int compteur = 0;
+
+    ifstream fichierScore;
+    int highScore[6];
+    
+
     /////////////////VECTEUR ET TEXTURE PERSONNAGES////////////////////
 
     vector<sf::Texture> texturesPersonnages;
@@ -48,6 +55,12 @@ void Game::play()
     personnage.setTexture(texturesPersonnages[selection]);
     personnage.setPosition(420, 155);
 
+
+    sf::Font fontHS;
+    if (!fontHS.loadFromFile("Team-401.ttf")) 
+    {
+        cout << "Impossible de charger la font.";
+    }
     ////////////////////////MUSIQUES////////////////////////
 
     sf::Music musicMenu;
@@ -624,7 +637,7 @@ void Game::play()
                                 {
                                 case Keyboard::Escape:
                                     windowControles.close();
-                                    //  music.stop();
+                                   
                                     break;
                                 }
                             }
@@ -634,7 +647,7 @@ void Game::play()
 
                                 if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
                                 {
-                                    cout << "1";
+                                    
                                     windowControles.close();
                                 }
                             }
@@ -661,9 +674,6 @@ void Game::play()
                     RenderWindow windowHS(VideoMode(1200, 800), "Meilleurs Scores");
 
 
-                    sf::RectangleShape optionMenuRetour({ 284.f, 74.f });
-                    optionMenuRetour.setTexture(&menuRetour);
-                    optionMenuRetour.setPosition(10, 10);
                     while (windowHS.isOpen())
                     {
                         Event highscoreEvent;
@@ -684,7 +694,7 @@ void Game::play()
                                 {
                                 case Keyboard::Escape:
                                     windowHS.close();
-                                    //  music.stop();
+                                   
                                     break;
                                 }
                             }
@@ -694,14 +704,26 @@ void Game::play()
 
                                 if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
                                 {
-                                    cout << "1";
+                                    
                                     windowHS.close();
                                 }
                             }
-
+                            openFichierHighScore(highScore, indexNiveauChoisi, compteur);
+                            trierHighScore(highScore);
+       
                             windowHS.clear();
                             windowHS.draw(menuHS);
                             windowHS.draw(optionMenuRetour);
+                            int nbScores1 = lireHighScoreLvl1(highScore, 5);
+                            afficherHS1(windowHS, fontHS, highScore, nbScores1);
+                            int nbScores2 = lireHighScoreLvl2(highScore, 5);
+                            afficherHS2(windowHS, fontHS, highScore, nbScores2);
+                            int nbScores3 = lireHighScoreLvl3(highScore, 5);
+                            afficherHS3(windowHS, fontHS, highScore, nbScores3);
+                            int nbScores4 = lireHighScoreLvl4(highScore, 5);
+                            afficherHS4(windowHS, fontHS, highScore, nbScores4);
+                            int nbScores5 = lireHighScoreLvl5(highScore, 5);
+                            afficherHS5(windowHS, fontHS, highScore, nbScores5);
                             windowHS.display();
                         }
                     }
@@ -797,8 +819,7 @@ void Game::play()
             mur.setSize(Vector2f(sizeBlock, sizeBlock));
             mur.setTexture(&textureMure);
 
-            int dir = 0;
-            int compteur = 0;
+           
 
             while (window.isOpen()) {
 
@@ -844,8 +865,7 @@ void Game::play()
 
                 if (Niveaureussi(boxes, boiteCheck))
                 {
-                    ifstream fichierScore;
-                    int highScore[6];
+                    
                     fichierScore = openFichierHighScore(highScore, indexNiveauChoisi, compteur);
                     fichierScore.close();
                     trierHighScore(highScore);
