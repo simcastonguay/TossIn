@@ -55,6 +55,7 @@ void Game::play()
     personnage.setTexture(texturesPersonnages[selection]);
     personnage.setPosition(420, 155);
 
+    /////////////////////FONT//////////////////////////////
 
     sf::Font fontHS;
     if (!fontHS.loadFromFile("Team-401.ttf")) 
@@ -821,7 +822,8 @@ void Game::play()
 
            
 
-            while (window.isOpen()) {
+            while (window.isOpen())
+            {
 
                 Event event{};
 
@@ -886,6 +888,7 @@ void Game::play()
                 window.display();
 
             }
+            musicMenu.play();
         }
 
     }
