@@ -886,7 +886,8 @@ void Game::play()
 
                     if (indexNiveau == 4) {
                         window.close();
-                        break;
+                        loadNiveau = false;
+                        break;  
                     }
 
                     ofstream updateNiveau;
