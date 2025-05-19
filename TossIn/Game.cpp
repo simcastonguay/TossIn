@@ -69,6 +69,10 @@ void Game::play()
     musicMenu.setLoop(true);
     musicMenu.play();
 
+    sf::Music musicLvl;
+    musicLvl.openFromFile("musiqueNiveau.wav");
+    musicLvl.setLoop(true);
+
     sf::SoundBuffer changePerso;
     changePerso.loadFromFile("deplacement.wav");
     sf::Sound cliqueChangement;
@@ -748,6 +752,7 @@ void Game::play()
         ////////////////////DÉBUT DU JEU///////////////////
         while (loadNiveau == true) {
             musicMenu.stop();
+            musicLvl.play();
             int width = 1600, height = 1000;
             RenderWindow window(VideoMode(width, height), "Toss in!");
             window.setFramerateLimit(60);
@@ -898,6 +903,7 @@ void Game::play()
                 window.display();
 
             }
+            musicLvl.stop();
             musicMenu.play();
         }
 
