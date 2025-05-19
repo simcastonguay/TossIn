@@ -884,7 +884,7 @@ void Game::play()
                     updateHighScore(fichierScoreWrite, highScore, indexNiveauChoisi);
 
 
-                    if (indexNiveau == 4) {
+                    if (indexNiveau >= 4) {
                         window.close();
                         loadNiveau = false;
                         break;  
